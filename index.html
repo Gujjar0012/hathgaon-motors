@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Hathgaon Motors | Certified Pre-Owned Bikes</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,13 +24,30 @@
       --radius: 14px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    html, body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      max-width: 100%;
+    }
+
     body { background-color: var(--bg); color: var(--dark); }
 
+    /* Button Utilities */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 0.65rem 1.1rem; border-radius: 9px; font-weight: 600; font-size: 0.88rem;
+      padding: 0.65rem 1rem; border-radius: 9px; font-weight: 600; font-size: 0.88rem;
       cursor: pointer; border: none; transition: all 0.2s ease; text-decoration: none;
+      box-sizing: border-box;
     }
     .btn-primary { background: var(--primary); color: white; }
     .btn-primary:hover { background: var(--primary-hover); }
@@ -49,155 +66,206 @@
     .btn-success:hover { background: #bbf7d0; }
     .btn-disabled { background: #cbd5e1 !important; color: #64748b !important; cursor: not-allowed !important; pointer-events: none; }
 
-    #publicStoreView { display: block; padding-bottom: 60px; }
+    /* Public Store Styles */
+    #publicStoreView { display: block; padding-bottom: 60px; width: 100%; }
     .navbar {
       background: #ffffff; border-bottom: 1px solid var(--border);
-      padding: 0.85rem 5%; display: flex; justify-content: space-between;
+      padding: 0.85rem 4%; display: flex; justify-content: space-between;
       align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+      width: 100%;
     }
     .logo {
-      font-size: 1.35rem; font-weight: 800; color: var(--dark);
+      font-size: 1.25rem; font-weight: 800; color: var(--dark);
       display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
     }
     .logo i, .logo span { color: var(--primary); }
+    
     .hero {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: white; text-align: center; padding: 3.5rem 1rem 4.5rem;
+      color: white; text-align: center; padding: 2.5rem 1rem 3.5rem;
+      width: 100%;
     }
     .hero-badge {
       display: inline-block; background: rgba(225, 29, 72, 0.15); color: #fda4af;
-      border: 1px solid rgba(225, 29, 72, 0.3); padding: 4px 12px; border-radius: 20px;
-      font-size: 0.78rem; font-weight: 700; margin-bottom: 0.85rem;
+      border: 1px solid rgba(225, 29, 72, 0.3); padding: 4px 10px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 700; margin-bottom: 0.75rem;
     }
-    .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .hero p { color: #94a3b8; font-size: 1rem; max-width: 600px; margin: 0 auto; }
+    .hero h1 { font-size: 1.7rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.3; }
+    .hero p { color: #94a3b8; font-size: 0.9rem; max-width: 600px; margin: 0 auto; }
 
-    .filter-wrapper { max-width: 850px; margin: -2rem auto 2.5rem; padding: 0 1rem; position: relative; z-index: 10; }
+    .filter-wrapper { max-width: 850px; margin: -1.8rem auto 2rem; padding: 0 12px; position: relative; z-index: 10; width: 100%; }
     .search-card {
-      background: white; border-radius: var(--radius); padding: 0.85rem;
-      box-shadow: var(--shadow-md); display: flex; gap: 10px; align-items: center; border: 1px solid var(--border);
+      background: white; border-radius: var(--radius); padding: 0.75rem;
+      box-shadow: var(--shadow-md); display: flex; gap: 8px; align-items: center; border: 1px solid var(--border);
+      width: 100%;
     }
     .search-input-box {
-      flex: 1; display: flex; align-items: center; gap: 10px; background: #f1f5f9;
-      padding: 0.7rem 1rem; border-radius: 8px;
+      flex: 1; display: flex; align-items: center; gap: 8px; background: #f1f5f9;
+      padding: 0.65rem 0.85rem; border-radius: 8px; min-width: 0;
     }
-    .search-input-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 0.95rem; }
+    .search-input-box input { border: none; background: transparent; outline: none; width: 100%; font-size: 0.9rem; }
     .filter-select {
-      background: #f1f5f9; border: none; padding: 0.7rem 1rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.9rem; color: var(--dark); outline: none; cursor: pointer;
+      background: #f1f5f9; border: none; padding: 0.65rem 0.85rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.85rem; color: var(--dark); outline: none; cursor: pointer;
     }
 
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 1rem; }
-    .section-title { font-size: 1.45rem; font-weight: 800; margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; }
-    .section-title span { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 12px; width: 100%; }
+    .section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .section-title span { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
 
-    .bike-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.5rem; }
+    .bike-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; width: 100%; }
     .bike-card {
       background: var(--card-bg); border-radius: var(--radius); overflow: hidden;
       border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
-      cursor: pointer; position: relative; transition: all 0.2s ease;
+      cursor: pointer; position: relative; transition: all 0.2s ease; width: 100%;
     }
     .bike-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .bike-img-wrap { position: relative; height: 220px; background: #0f172a; overflow: hidden; }
+    .bike-img-wrap { position: relative; height: 210px; background: #0f172a; overflow: hidden; width: 100%; }
     .bike-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    
     .verified-tag {
       position: absolute; top: 10px; left: 10px; background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(4px); color: #38bdf8; font-size: 0.72rem; font-weight: 700; padding: 4px 8px; border-radius: 20px; z-index: 5;
+      backdrop-filter: blur(4px); color: #38bdf8; font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 20px; z-index: 5;
     }
     .price-drop-badge {
       position: absolute; top: 10px; left: 10px; background: #e11d48; color: #fff;
-      font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; z-index: 5; display: flex; align-items: center; gap: 4px;
+      font-size: 0.7rem; font-weight: 800; padding: 4px 8px; border-radius: 20px; z-index: 5; display: flex; align-items: center; gap: 4px;
     }
     .sold-badge {
       position: absolute; top: 10px; left: 10px; background: #dc2626; color: #fff;
-      font-size: 0.78rem; font-weight: 800; padding: 5px 12px; border-radius: 20px; z-index: 6;
+      font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; z-index: 6;
     }
     .photo-counter {
       position: absolute; top: 10px; right: 10px; background: rgba(0, 0, 0, 0.65); color: #fff;
-      font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 20px; z-index: 5;
+      font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 20px; z-index: 5;
     }
-    .bike-content { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
-    .bike-content h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .bike-specs { font-size: 0.82rem; color: var(--text-muted); display: flex; gap: 10px; margin-bottom: 1.1rem; }
-    .card-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
-    .price-row { display: flex; justify-content: space-between; align-items: flex-end; }
-    .price-box { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .price-original-cut { font-size: 0.95rem; color: #94a3b8; text-decoration: line-through; font-weight: 600; }
-    .price-value { font-size: 1.35rem; font-weight: 800; color: var(--dark); }
-    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    
+    .bike-content { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; width: 100%; }
+    .bike-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .bike-specs { font-size: 0.8rem; color: var(--text-muted); display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+    .card-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 0.8rem; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .price-row { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; }
+    .price-box { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    .price-original-cut { font-size: 0.85rem; color: #94a3b8; text-decoration: line-through; font-weight: 600; }
+    .price-value { font-size: 1.25rem; font-weight: 800; color: var(--dark); }
+    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 100%; }
 
-    #detailSection { display: none; animation: fadeIn 0.25s ease-out; }
+    /* Full Detail Page - 100% Mobile Optimized */
+    #detailSection { display: none; animation: fadeIn 0.25s ease-out; width: 100%; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .detail-card { background: white; border-radius: 18px; border: 1px solid var(--border); padding: 1.75rem; }
-    .detail-hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-    .detail-main-img { width: 100%; height: 360px; object-fit: cover; border-radius: 14px; background: #0f172a; }
-    .gallery-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 5px; }
-    .gallery-thumb { width: 70px; height: 55px; border-radius: 8px; object-fit: cover; cursor: pointer; border: 2px solid transparent; }
-    .gallery-thumb.active { border-color: var(--primary); transform: scale(1.04); }
-    .detail-price-box { background: #f8fafc; padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border); margin: 1.2rem 0; }
-    .specs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; background: #f8fafc; padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border); }
-    .spec-item { display: flex; flex-direction: column; gap: 3px; }
-    .spec-item .label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
-    .spec-item .val { font-size: 1rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 6px; }
+    
+    .detail-card { 
+      background: white; border-radius: 14px; border: 1px solid var(--border); 
+      padding: 1.25rem; width: 100%; box-sizing: border-box;
+    }
+    .detail-hero-grid { 
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; width: 100%; 
+    }
+    .detail-gallery { width: 100%; }
+    .detail-main-img { 
+      width: 100%; height: 300px; object-fit: cover; border-radius: 12px; background: #0f172a; display: block;
+    }
+    .gallery-thumbs { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; padding-bottom: 4px; width: 100%; }
+    .gallery-thumb { width: 65px; height: 50px; border-radius: 6px; object-fit: cover; cursor: pointer; border: 2px solid transparent; flex-shrink: 0; }
+    .gallery-thumb.active { border-color: var(--primary); transform: scale(1.02); }
+    
+    .detail-info { width: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+    .detail-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; line-height: 1.3; word-break: break-word; }
+    .detail-subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.8rem; }
+    
+    .detail-price-box { 
+      background: #f8fafc; padding: 1rem; border-radius: 10px; border: 1px solid var(--border); 
+      margin: 0.8rem 0 1.2rem; width: 100%; box-sizing: border-box;
+    }
+    .detail-price-box .price-numbers {
+      display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 4px;
+    }
+    .detail-price-box .price-cut {
+      font-size: 1.1rem; color: #94a3b8; text-decoration: line-through; font-weight: 600;
+    }
+    .detail-price-box .price-bold {
+      font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1.2;
+    }
 
-    #adminPortalView { display: none; min-height: 100vh; background: #f1f5f9; }
-    .admin-layout { display: flex; min-height: 100vh; }
-    .admin-sidebar { width: 260px; background: var(--sidebar); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
-    .admin-sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.2rem; font-weight: 800; }
+    .specs-grid { 
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+      gap: 0.75rem; background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); width: 100%; 
+    }
+    .spec-item { display: flex; flex-direction: column; gap: 2px; }
+    .spec-item .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
+    .spec-item .val { font-size: 0.95rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 6px; }
+
+    /* Admin Portal Styles */
+    #adminPortalView { display: none; min-height: 100vh; background: #f1f5f9; width: 100%; }
+    .admin-layout { display: flex; min-height: 100vh; width: 100%; }
+    .admin-sidebar { width: 250px; background: var(--sidebar); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
+    .admin-sidebar-header { padding: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 1.15rem; font-weight: 800; }
     .admin-sidebar-header span { color: var(--primary); }
-    .admin-nav-menu { list-style: none; padding: 1rem 0; flex: 1; }
+    .admin-nav-menu { list-style: none; padding: 0.8rem 0; flex: 1; }
     .admin-nav-item {
-      padding: 0.85rem 1.5rem; display: flex; align-items: center; gap: 12px; color: #94a3b8;
-      cursor: pointer; font-size: 0.92rem; font-weight: 600; transition: all 0.2s;
+      padding: 0.8rem 1.25rem; display: flex; align-items: center; gap: 10px; color: #94a3b8;
+      cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all 0.2s;
     }
     .admin-nav-item:hover, .admin-nav-item.active { background: rgba(225, 29, 72, 0.15); color: #ffffff; border-left: 4px solid var(--primary); }
-    .admin-nav-item i { width: 20px; font-size: 1.05rem; }
+    .admin-nav-item i { width: 18px; font-size: 1rem; }
 
-    .admin-content { flex: 1; display: flex; flex-direction: column; overflow-x: hidden; }
-    .admin-topbar { background: white; padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .admin-main-body { padding: 2rem; flex: 1; }
-    .admin-tab-pane { display: none; }
+    .admin-content { flex: 1; display: flex; flex-direction: column; overflow-x: hidden; width: 100%; }
+    .admin-topbar { background: white; padding: 0.85rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .admin-main-body { padding: 1.25rem; flex: 1; width: 100%; }
+    .admin-tab-pane { display: none; width: 100%; }
     .admin-tab-pane.active { display: block; animation: fadeIn 0.2s ease-out; }
-    .admin-card { background: white; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); padding: 1.5rem; margin-bottom: 1.5rem; }
+    .admin-card { background: white; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); padding: 1.25rem; margin-bottom: 1.25rem; width: 100%; }
 
+    /* Modals & Forms */
     .modal {
       display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 1rem;
+      backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 12px;
     }
     .modal-box {
-      background: white; width: 100%; max-width: 520px; max-height: 90vh;
-      overflow-y: auto; border-radius: 16px; padding: 1.5rem; box-shadow: var(--shadow-md);
+      background: white; width: 100%; max-width: 500px; max-height: 90vh;
+      overflow-y: auto; border-radius: 14px; padding: 1.25rem; box-shadow: var(--shadow-md);
     }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; }
-    .form-group { margin-bottom: 0.85rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; }
+    .form-group { margin-bottom: 0.8rem; width: 100%; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 3px; }
     .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--border);
-      border-radius: 8px; font-size: 0.9rem; outline: none; background: #f8fafc;
+      width: 100%; padding: 0.6rem 0.8rem; border: 1px solid var(--border);
+      border-radius: 7px; font-size: 0.88rem; outline: none; background: #f8fafc;
     }
-    .upload-box { border: 2px dashed #cbd5e1; padding: 1rem; border-radius: 10px; text-align: center; cursor: pointer; background: #f8fafc; }
-    .preview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
-    .preview-thumb { width: 100%; height: 55px; object-fit: cover; border-radius: 6px; }
+    .upload-box { border: 2px dashed #cbd5e1; padding: 0.85rem; border-radius: 8px; text-align: center; cursor: pointer; background: #f8fafc; width: 100%; }
+    .preview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 8px; width: 100%; }
+    .preview-thumb { width: 100%; height: 50px; object-fit: cover; border-radius: 5px; }
 
-    .admin-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    .admin-table th, .admin-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-    .admin-table th { background: #f8fafc; color: var(--text-muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; }
+    .admin-table th, .admin-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .admin-table th { background: #f8fafc; color: var(--text-muted); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
 
-    .auth-tab-switch { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.2rem; }
-    .auth-tab-btn { flex: 1; padding: 0.75rem; text-align: center; font-weight: 700; font-size: 0.9rem; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    .auth-tab-switch { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1rem; width: 100%; }
+    .auth-tab-btn { flex: 1; padding: 0.65rem; text-align: center; font-weight: 700; font-size: 0.85rem; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -2px; }
     .auth-tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .seller-tag { background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+    .seller-tag { background: #e0f2fe; color: #0284c7; padding: 2px 6px; border-radius: 5px; font-size: 0.72rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 
+    /* STRICT MOBILE ADAPTATIONS */
     @media (max-width: 768px) {
       .admin-layout { flex-direction: column; }
       .admin-sidebar { width: 100%; }
-      .detail-hero-grid, .form-row, .specs-grid, .bike-grid { grid-template-columns: 1fr; }
+      .detail-hero-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .detail-main-img { height: 220px; }
+      .detail-title { font-size: 1.25rem; }
+      .detail-price-box .price-bold { font-size: 1.55rem; }
+      .specs-grid { grid-template-columns: 1fr; padding: 10px; }
+      .form-row { grid-template-columns: 1fr; }
+      .bike-grid { grid-template-columns: 1fr; }
+      .search-card { flex-direction: column; gap: 6px; }
+      .search-input-box, .filter-select { width: 100%; }
+      .detail-card { padding: 12px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- 1. PUBLIC STOREFRONT -->
   <div id="publicStoreView">
     <header class="navbar">
       <div class="logo" id="secretLogoTrigger">
@@ -240,42 +308,48 @@
       </main>
     </div>
 
-    <div id="detailSection" class="container" style="margin-top: 2rem;">
-      <div style="margin-bottom: 1.5rem;">
-        <button class="btn btn-admin" onclick="showCatalog()">
+    <!-- Mobile-Fit Dedicated Detail Section -->
+    <div id="detailSection" class="container" style="margin-top: 1rem;">
+      <div style="margin-bottom: 1rem;">
+        <button class="btn btn-admin btn-sm" onclick="showCatalog()">
           <i class="fa-solid fa-arrow-left"></i> Back to All Bikes
         </button>
       </div>
 
       <div class="detail-card">
         <div class="detail-hero-grid">
-          <div>
+          <div class="detail-gallery">
             <img src="" id="detailMainImg" class="detail-main-img" alt="Bike">
             <div class="gallery-thumbs" id="detailThumbs"></div>
           </div>
-          <div>
-            <div id="detailBadgeContainer" style="margin-bottom: 8px;"></div>
-            <h1 id="detailTitle" style="font-size:1.8rem; font-weight:800; margin-bottom:0.5rem;"></h1>
-            <p id="detailSubtitle" style="color:var(--text-muted); font-size:0.95rem;"></p>
-            
-            <div class="detail-price-box">
-              <span id="detailPriceLabel" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Hathgaon Motors Demand Price</span>
-              <div id="detailPriceArea" style="margin-top:4px;"></div>
-              <span style="font-size:0.8rem; color:#16a34a; font-weight:600;"><i class="fa-solid fa-check"></i> Best Price Guarantee • Immediate Transfer</span>
+          
+          <div class="detail-info">
+            <div>
+              <div id="detailBadgeContainer" style="margin-bottom: 6px;"></div>
+              <h1 id="detailTitle" class="detail-title"></h1>
+              <p id="detailSubtitle" class="detail-subtitle"></p>
+              
+              <div class="detail-price-box">
+                <span id="detailPriceLabel" style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Hathgaon Motors Demand Price</span>
+                <div id="detailPriceArea"></div>
+                <span style="font-size:0.78rem; color:#16a34a; font-weight:600; display:block; margin-top:4px;">
+                  <i class="fa-solid fa-check"></i> Best Price Guarantee • Immediate Transfer
+                </span>
+              </div>
             </div>
 
-            <div style="display:flex; flex-direction:column; gap:10px;">
-              <a href="#" id="detailCallBtn" class="btn btn-call" style="padding:0.9rem; font-size:1rem;">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <a href="#" id="detailCallBtn" class="btn btn-call" style="padding:0.8rem; font-size:0.95rem; width:100%;">
                 <i class="fa-solid fa-phone"></i> Call Now (+91 8756425896)
               </a>
-              <a href="#" id="detailWaBtn" target="_blank" class="btn btn-wa" style="padding:0.9rem; font-size:1rem;">
+              <a href="#" id="detailWaBtn" target="_blank" class="btn btn-wa" style="padding:0.8rem; font-size:0.95rem; width:100%;">
                 <i class="fa-brands fa-whatsapp"></i> Chat & Buy on WhatsApp
               </a>
             </div>
           </div>
         </div>
 
-        <div style="font-size:1.2rem; font-weight:800; margin-bottom:1rem; display:flex; align-items:center; gap:8px;">
+        <div style="font-size:1.05rem; font-weight:800; margin-bottom:0.8rem; display:flex; align-items:center; gap:6px;">
           <i class="fa-solid fa-file-contract" style="color:var(--primary);"></i> Complete Bike Details & Verification
         </div>
         <div class="specs-grid" id="detailSpecsGrid"></div>
@@ -283,6 +357,7 @@
     </div>
   </div>
 
+  <!-- 2. ADMIN PORTAL (DESKTOP + MOBILE RESPONSIVE) -->
   <div id="adminPortalView">
     <div class="admin-layout">
       <aside class="admin-sidebar">
@@ -303,8 +378,8 @@
             <i class="fa-solid fa-key"></i> Password & Security
           </li>
         </ul>
-        <div style="padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-          <div id="currentUserMeta" style="font-size:0.8rem; color:#94a3b8; margin-bottom:10px;"></div>
+        <div style="padding: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div id="currentUserMeta" style="font-size:0.75rem; color:#94a3b8; margin-bottom:8px;"></div>
           <button class="btn btn-danger btn-sm" style="width: 100%;" onclick="handleAdminLogout()">
             <i class="fa-solid fa-right-from-bracket"></i> Logout
           </button>
@@ -314,8 +389,8 @@
       <main class="admin-content">
         <div class="admin-topbar">
           <div>
-            <h2 id="adminHeaderTitle" style="font-size:1.3rem; font-weight:800;">Inventory & Stock Management</h2>
-            <span id="adminHeaderSubtitle" style="font-size:0.8rem; color:var(--text-muted);">Dealership Portal</span>
+            <h2 id="adminHeaderTitle" style="font-size:1.15rem; font-weight:800;">Inventory & Stock Management</h2>
+            <span id="adminHeaderSubtitle" style="font-size:0.75rem; color:var(--text-muted);">Dealership Portal</span>
           </div>
           <div>
             <button class="btn btn-admin btn-sm" onclick="switchToPublicStore()">
@@ -326,12 +401,12 @@
 
         <div class="admin-main-body">
           <div id="stockTab" class="admin-tab-pane active">
-            <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
               <div>
-                <h3 style="font-size:1.1rem; font-weight:700;">Vehicle Inventory</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Manage uploaded bikes, drop prices, or edit details</p>
+                <h3 style="font-size:1rem; font-weight:700;">Vehicle Inventory</h3>
+                <p style="font-size:0.78rem; color:var(--text-muted);">Manage uploaded bikes, drop prices, or edit details</p>
               </div>
-              <button class="btn btn-primary" onclick="openUploadForm()">
+              <button class="btn btn-primary btn-sm" onclick="openUploadForm()">
                 <i class="fa-solid fa-plus"></i> Upload New Bike
               </button>
             </div>
@@ -343,7 +418,7 @@
 
           <div id="subAdminsTab" class="admin-tab-pane">
             <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Add Sub-Admin</h3>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.8rem;">Add Sub-Admin</h3>
               <form id="addSubAdminForm" onsubmit="handleAddSubAdmin(event)" class="form-row">
                 <div class="form-group">
                   <label>Sub-Admin Name</label>
@@ -364,52 +439,56 @@
             </div>
 
             <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Existing Sub-Admins</h3>
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody id="subAdminTableBody"></tbody>
-              </table>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.5rem;">Existing Sub-Admins</h3>
+              <div style="overflow-x:auto;">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="subAdminTableBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           <div id="sellersTab" class="admin-tab-pane">
             <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700;">Generate Seller Referral Code</h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Generate and share this referral code with new sellers.</p>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <input type="text" id="generatedRefCode" readonly style="max-width:250px; font-weight:800; font-size:1.1rem; color:var(--primary); background:#fff1f2; border:1px dashed var(--primary); padding:0.6rem 1rem; border-radius:8px;">
-                <button class="btn btn-primary" onclick="generateNewReferral()"><i class="fa-solid fa-arrows-rotate"></i> Generate Code</button>
-                <button class="btn btn-admin" onclick="copyReferralCode()"><i class="fa-solid fa-copy"></i> Copy Code</button>
+              <h3 style="font-size:1rem; font-weight:700;">Generate Seller Referral Code</h3>
+              <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.8rem;">Generate and share this code with new sellers to let them register.</p>
+              <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <input type="text" id="generatedRefCode" readonly style="max-width:200px; font-weight:800; font-size:1rem; color:var(--primary); background:#fff1f2; border:1px dashed var(--primary); padding:0.5rem 0.8rem; border-radius:6px;">
+                <button class="btn btn-primary btn-sm" onclick="generateNewReferral()"><i class="fa-solid fa-arrows-rotate"></i> Generate</button>
+                <button class="btn btn-admin btn-sm" onclick="copyReferralCode()"><i class="fa-solid fa-copy"></i> Copy</button>
               </div>
             </div>
 
             <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Self-Registered Sellers (KYC & Documents)</h3>
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Photo</th>
-                    <th>Name & Ref Code</th>
-                    <th>Mobile & Address</th>
-                    <th>Aadhar & PAN Card</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody id="sellersTableBody"></tbody>
-              </table>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.5rem;">Self-Registered Sellers</h3>
+              <div style="overflow-x:auto;">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Photo</th>
+                      <th>Name & Ref</th>
+                      <th>Mobile & Address</th>
+                      <th>Aadhar & PAN</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sellersTableBody"></tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           <div id="securityTab" class="admin-tab-pane">
-            <div class="admin-card" style="max-width:500px;">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Reset Super Admin Password</h3>
+            <div class="admin-card" style="max-width:450px;">
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.8rem;">Reset Super Admin Password</h3>
               <form id="resetPassForm" onsubmit="handleResetPassword(event)">
                 <div class="form-group">
                   <label>Current Password</label>
@@ -419,7 +498,7 @@
                   <label>New Password</label>
                   <input type="password" id="newPassInput" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Update Password</button>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">Update Password</button>
               </form>
             </div>
           </div>
@@ -428,10 +507,11 @@
     </div>
   </div>
 
+  <!-- MODALS -->
   <div class="modal" id="loginModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="authModalHeaderTitle">Portal Access</h3>
+        <h3 id="authModalHeaderTitle" style="font-size:1.05rem;">Portal Access</h3>
         <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
       </div>
 
@@ -449,7 +529,7 @@
           <label>Password</label>
           <input type="password" id="adminPass" placeholder="Enter password" required>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login to Portal</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">Login to Portal</button>
       </form>
 
       <form id="sellerSelfRegisterForm" onsubmit="handleSellerSelfRegister(event)" style="display:none;">
@@ -499,15 +579,16 @@
           <input type="file" id="regSellerPhoto" accept="image/*" required>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Register & Activate Account</button>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:8px;">Register & Activate Account</button>
       </form>
     </div>
   </div>
 
+  <!-- Upload Bike Modal -->
   <div class="modal" id="bikeFormModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="formModalTitle">Add Bike with Full Details</h3>
+        <h3 id="formModalTitle" style="font-size:1.05rem;">Add Bike with Full Details</h3>
         <span class="close-btn" onclick="closeModal('bikeFormModal')">&times;</span>
       </div>
       <form id="bikeSaveForm" onsubmit="handleSaveBike(event)">
@@ -536,10 +617,10 @@
           </div>
         </div>
 
-        <div class="form-group" style="background:#fff1f2; padding:10px; border-radius:8px; border:1px dashed #fda4af;">
+        <div class="form-group" style="background:#fff1f2; padding:8px; border-radius:8px; border:1px dashed #fda4af;">
           <label style="color:#be123c; display:flex; justify-content:space-between;">
             <span><i class="fa-solid fa-tags"></i> Dropped / Offer Price (Optional)</span>
-            <span style="font-weight:normal; font-size:0.75rem;">Leave empty if no discount</span>
+            <span style="font-weight:normal; font-size:0.72rem;">Leave empty if no discount</span>
           </label>
           <input type="text" id="bikeDroppedPrice" placeholder="e.g. 1,22,000">
         </div>
@@ -604,14 +685,14 @@
         <div class="form-group" id="photoUploadGroup">
           <label>Upload Bike Photos (Up to 10 photos)</label>
           <div class="upload-box" onclick="document.getElementById('bikePhotosInput').click()">
-            <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem; color:var(--primary); margin-bottom:6px;"></i>
-            <p style="font-size:0.85rem; font-weight:600; color:var(--dark);">Tap to select photos from gallery</p>
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.5rem; color:var(--primary); margin-bottom:4px;"></i>
+            <p style="font-size:0.8rem; font-weight:600; color:var(--dark);">Tap to select photos from gallery</p>
           </div>
           <input type="file" id="bikePhotosInput" accept="image/*" multiple style="display:none;" onchange="handleImageSelection(event)">
           <div class="preview-grid" id="previewGrid"></div>
         </div>
 
-        <button type="submit" id="saveBikeSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Vehicle</button>
+        <button type="submit" id="saveBikeSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:8px;">Save Vehicle</button>
       </form>
     </div>
   </div>
@@ -668,12 +749,12 @@
     ];
 
     function getStoredBikes() {
-      const stored = localStorage.getItem("hathgaon_bikes_full_v9");
+      const stored = localStorage.getItem("hathgaon_bikes_full_v10");
       return stored ? JSON.parse(stored) : defaultDemoStock;
     }
 
     function saveStoredBikes(bikes) {
-      localStorage.setItem("hathgaon_bikes_full_v9", JSON.stringify(bikes));
+      localStorage.setItem("hathgaon_bikes_full_v10", JSON.stringify(bikes));
     }
 
     function switchAuthTab(type) {
@@ -845,7 +926,7 @@
       const isSeller = activeLoggedInUser.role === "Seller";
 
       document.getElementById("sidebarBrandRole").innerText = isSeller ? "Seller Hub" : "Admin";
-      document.getElementById("currentUserMeta").innerText = `Logged in as: ${activeLoggedInUser.name} (${activeLoggedInUser.role})`;
+      document.getElementById("currentUserMeta").innerText = `Logged in: ${activeLoggedInUser.name} (${activeLoggedInUser.role})`;
 
       document.querySelectorAll(".owner-only-menu").forEach(menu => {
         menu.style.display = isOwner ? "flex" : "none";
@@ -903,34 +984,34 @@
         const isSold = bike.isSold === true;
         const hasDropped = bike.droppedPrice && bike.droppedPrice.trim() !== "";
         const item = document.createElement("div");
-        item.style.cssText = "display:flex; align-items:center; justify-content:space-between; padding:12px; border:1px solid #e2e8f0; border-radius:10px; margin-bottom:10px; background:#f8fafc; flex-wrap:wrap; gap:10px;";
+        item.style.cssText = "display:flex; align-items:center; justify-content:space-between; padding:10px; border:1px solid #e2e8f0; border-radius:10px; margin-bottom:8px; background:#f8fafc; flex-wrap:wrap; gap:8px;";
 
         const sellerBadge = bike.addedByName 
-          ? `<span class="seller-tag"><i class="fa-solid fa-user-tag"></i> Seller: ${bike.addedByName} (${bike.addedByRef})</span>`
+          ? `<span class="seller-tag"><i class="fa-solid fa-user-tag"></i> ${bike.addedByName} (${bike.addedByRef})</span>`
           : `<span class="seller-tag" style="background:#f1f5f9; color:#475569;"><i class="fa-solid fa-shield"></i> Dealer Direct</span>`;
 
         item.innerHTML = `
-          <div style="display:flex; align-items:center; gap:12px;">
-            <img src="${(bike.images && bike.images[0]) || ''}" style="width:65px; height:50px; object-fit:cover; border-radius:8px;">
+          <div style="display:flex; align-items:center; gap:10px; flex:1; min-width:200px;">
+            <img src="${(bike.images && bike.images[0]) || ''}" style="width:55px; height:42px; object-fit:cover; border-radius:6px;">
             <div>
-              <h4 style="font-size:1rem; font-weight:700;">
+              <h4 style="font-size:0.92rem; font-weight:700;">
                 ${bike.name} 
-                ${isSold ? '<span style="color:#dc2626; font-size:0.75rem; font-weight:800;">[SOLD OUT]</span>' : '<span style="color:#16a34a; font-size:0.75rem; font-weight:800;">[AVAILABLE]</span>'}
+                ${isSold ? '<span style="color:#dc2626; font-size:0.7rem; font-weight:800;">[SOLD]</span>' : '<span style="color:#16a34a; font-size:0.7rem; font-weight:800;">[AVAILABLE]</span>'}
               </h4>
-              <p style="font-size:0.8rem; color:#64748b; margin-top:2px;">
-                Demand: ₹${bike.price} 
-                ${hasDropped ? `<strong style="color:var(--primary);">➔ Dropped: ₹${bike.droppedPrice}</strong>` : ''} 
-                • ${bike.year} • ${bike.km}
+              <p style="font-size:0.75rem; color:#64748b; margin-top:1px;">
+                ₹${bike.price} 
+                ${hasDropped ? `<strong style="color:var(--primary);">➔ ₹${bike.droppedPrice}</strong>` : ''} 
+                • ${bike.year}
               </p>
-              <div style="margin-top:4px;">${sellerBadge}</div>
+              <div style="margin-top:2px;">${sellerBadge}</div>
             </div>
           </div>
-          <div style="display:flex; gap:6px;">
+          <div style="display:flex; gap:4px;">
             <button class="btn btn-sm ${isSold ? 'btn-success' : 'btn-warning'}" onclick="toggleSoldStatus(${bike.id})">
-              <i class="fa-solid ${isSold ? 'fa-rotate-left' : 'fa-tag'}"></i> ${isSold ? 'Available' : 'Mark Sold'}
+              <i class="fa-solid ${isSold ? 'fa-rotate-left' : 'fa-tag'}"></i> ${isSold ? 'Available' : 'Sold'}
             </button>
             <button class="btn btn-sm btn-admin" onclick="openEditForm(${bike.id})">
-              <i class="fa-solid fa-pen-to-square"></i> Edit
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
             ${isOwner ? `
               <button class="btn btn-sm btn-danger" onclick="deleteBike(${bike.id})">
@@ -1162,16 +1243,16 @@
       tbody.innerHTML = "";
 
       if (sellers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b;">No registered sellers yet. Share a referral code with sellers to register.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b;">No registered sellers yet.</td></tr>`;
         return;
       }
 
       sellers.forEach((s, idx) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td><img src="${s.photo}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;"></td>
-          <td><strong>${s.name}</strong><br><span style="color:var(--primary); font-size:0.75rem; font-weight:700;">Ref: ${s.refCode}</span></td>
-          <td>${s.phone}<br><span style="font-size:0.75rem; color:#64748b;">${s.address}</span></td>
+          <td><img src="${s.photo}" style="width:36px; height:36px; border-radius:50%; object-fit:cover;"></td>
+          <td><strong>${s.name}</strong><br><span style="color:var(--primary); font-size:0.72rem; font-weight:700;">Ref: ${s.refCode}</span></td>
+          <td>${s.phone}<br><span style="font-size:0.72rem; color:#64748b;">${s.address}</span></td>
           <td>Aadhar: <strong>${s.aadhar}</strong><br>PAN: <strong>${s.pan}</strong></td>
           <td><button class="btn btn-sm btn-danger" onclick="deleteSeller(${idx})"><i class="fa-solid fa-trash"></i></button></td>
         `;
@@ -1258,7 +1339,7 @@
             </div>
             <div class="card-footer">
               <div class="price-row" onclick="openDetailPage(${bike.id})">
-                <span style="font-size:0.8rem; color:#64748b;">${hasDroppedPrice && !isSold ? 'Offer Price' : 'Demand Price'}</span>
+                <span style="font-size:0.75rem; color:#64748b;">${hasDroppedPrice && !isSold ? 'Offer Price' : 'Demand Price'}</span>
                 ${priceHtml}
               </div>
               <div class="action-row">
@@ -1266,7 +1347,7 @@
                   <i class="fa-solid fa-phone"></i> ${isSold ? 'Sold' : 'Call'}
                 </a>
                 <a href="${isSold ? 'javascript:void(0)' : `https://wa.me/91${DEALER_PHONE}?text=${waMessage}`}" target="${isSold ? '_self' : '_blank'}" class="btn btn-wa ${isSold ? 'btn-disabled' : ''}" onclick="event.stopPropagation();">
-                  <i class="fa-brands fa-whatsapp"></i> ${isSold ? 'Sold Out' : 'WhatsApp'}
+                  <i class="fa-brands fa-whatsapp"></i> ${isSold ? 'Sold' : 'WhatsApp'}
                 </a>
               </div>
             </div>
@@ -1304,18 +1385,18 @@
 
       if (isSold) {
         priceLabel.innerText = "Final Sale Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; text-decoration:line-through; color:#94a3b8;">₹${finalPrice}</div>`;
+        priceArea.innerHTML = `<div class="price-numbers"><span class="price-bold" style="text-decoration:line-through; color:#94a3b8;">₹${finalPrice}</span></div>`;
       } else if (hasDroppedPrice) {
         priceLabel.innerText = "Special Reduced Offer Price";
         priceArea.innerHTML = `
-          <div style="display:flex; align-items:baseline; gap:12px;">
-            <span style="font-size:1.3rem; color:#94a3b8; text-decoration:line-through;">₹${bike.price}</span>
-            <span style="font-size:2.2rem; font-weight:800; color:var(--primary);">₹${bike.droppedPrice}</span>
+          <div class="price-numbers">
+            <span class="price-cut">₹${bike.price}</span>
+            <span class="price-bold">₹${bike.droppedPrice}</span>
           </div>
         `;
       } else {
         priceLabel.innerText = "Hathgaon Motors Demand Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; color:var(--primary);">₹${bike.price}</div>`;
+        priceArea.innerHTML = `<div class="price-numbers"><span class="price-bold">₹${bike.price}</span></div>`;
       }
 
       const callBtn = document.getElementById("detailCallBtn");
