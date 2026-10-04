@@ -5,2624 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hathgaon Motors | Certified Pre-Owned Bikes</title>
   
-  <!-- Google Fonts & FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --primary: #e11d48;
-      --primary-hover: #be123c;
-      --whatsapp: #25d366;
-      --dark: #0f172a;
-      --sidebar: #1e293b;
-      --card-bg: #ffffff;
-      --bg: #f8fafc;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --shadow-sm: 0 2px 6px rgba(0,0,0,0.05);
-      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
-      --radius: 14px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--dark);
-    }
-
-    /* Common Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 0.65rem 1.1rem;
-      border-radius: 9px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-hover); }
-    .btn-call { background: #0284c7; color: white; }
-    .btn-call:hover { background: #0369a1; }
-    .btn-wa { background: var(--whatsapp); color: white; }
-    .btn-wa:hover { background: #1eb956; }
-    .btn-admin { background: #334155; color: white; }
-    .btn-admin:hover { background: #1e293b; }
-    .btn-sm { padding: 0.4rem 0.75rem; font-size: 0.8rem; border-radius: 6px; }
-    .btn-danger { background: #fee2e2; color: #dc2626; }
-    .btn-danger:hover { background: #fecaca; }
-    .btn-warning { background: #fef3c7; color: #d97706; }
-    .btn-warning:hover { background: #fde68a; }
-    .btn-success { background: #dcfce7; color: #16a34a; }
-    .btn-success:hover { background: #bbf7d0; }
-    .btn-disabled { background: #cbd5e1 !important; color: #64748b !important; cursor: not-allowed !important; pointer-events: none; }
-
-    /* ========================================================
-       1. PUBLIC FRONTEND STORE STYLES
-       ======================================================== */
-    #publicStoreView {
-      display: block;
-      padding-bottom: 60px;
-    }
-
-    .navbar {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-      padding: 0.85rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .logo {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .logo i { color: var(--primary); }
-    .logo span { color: var(--primary); }
-
-    .hero {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: white;
-      text-align: center;
-      padding: 3.5rem 1rem 4.5rem;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(225, 29, 72, 0.15);
-      color: #fda4af;
-      border: 1px solid rgba(225, 29, 72, 0.3);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 0.85rem;
-    }
-    .hero h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .hero p { color: #94a3b8; font-size: 1rem; max-width: 600px; margin: 0 auto; }
-
-    .filter-wrapper {
-      max-width: 850px;
-      margin: -2rem auto 2.5rem;
-      padding: 0 1rem;
-      position: relative;
-      z-index: 10;
-    }
-    .search-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 0.85rem;
-      box-shadow: var(--shadow-md);
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      border: 1px solid var(--border);
-    }
-    .search-input-box {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f1f5f9;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-    }
-    .search-input-box input {
-      border: none;
-      background: transparent;
-      outline: none;
-      width: 100%;
-      font-size: 0.95rem;
-      color: var(--dark);
-    }
-    .filter-select {
-      background: #f1f5f9;
-      border: none;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--dark);
-      outline: none;
-      cursor: pointer;
-    }
-
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    .section-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      margin-bottom: 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .section-title span { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
-
-    .bike-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 1.5rem;
-    }
-    .bike-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.2s ease;
-    }
-    .bike-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-
-    .bike-img-wrap {
-      position: relative;
-      height: 220px;
-      background: #0f172a;
-      overflow: hidden;
-    }
-    .bike-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .verified-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(4px);
-      color: #38bdf8;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 20px;
-      z-index: 5;
-    }
-    .price-drop-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #e11d48;
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 20px;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .sold-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: #dc2626;
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 20px;
-      z-index: 6;
-    }
-    .photo-counter {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.65);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 20px;
-      z-index: 5;
-    }
-
-    .bike-content { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
-    .bike-content h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .bike-specs { font-size: 0.82rem; color: var(--text-muted); display: flex; gap: 10px; margin-bottom: 1.1rem; }
-    .card-footer { margin-top: auto; border-top: 1px solid #f1f5f9; padding-top: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
-    .price-row { display: flex; justify-content: space-between; align-items: flex-end; }
-    .price-box { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .price-original-cut { font-size: 0.95rem; color: #94a3b8; text-decoration: line-through; font-weight: 600; }
-    .price-value { font-size: 1.35rem; font-weight: 800; color: var(--dark); }
-    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-    /* Detail Page */
-    #detailSection { display: none; animation: fadeIn 0.25s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .detail-card {
-      background: white;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-    }
-    .detail-hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-    .detail-main-img { width: 100%; height: 360px; object-fit: cover; border-radius: 14px; background: #0f172a; }
-    .gallery-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; padding-bottom: 5px; }
-    .gallery-thumb { width: 70px; height: 55px; border-radius: 8px; object-fit: cover; cursor: pointer; border: 2px solid transparent; }
-    .gallery-thumb.active { border-color: var(--primary); transform: scale(1.04); }
-    .detail-price-box { background: #f8fafc; padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border); margin: 1.2rem 0; }
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-      background: #f8fafc;
-      padding: 1.5rem;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-    .spec-item { display: flex; flex-direction: column; gap: 3px; }
-    .spec-item .label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
-    .spec-item .val { font-size: 1rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 6px; }
-
-    /* ========================================================
-       2. FULL-PAGE DEDICATED ADMIN PORTAL STYLES
-       ======================================================== */
-    #adminPortalView {
-      display: none;
-      min-height: 100vh;
-      background: #f1f5f9;
-    }
-    .admin-layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .admin-sidebar {
-      width: 260px;
-      background: var(--sidebar);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-    }
-    .admin-sidebar-header {
-      padding: 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-size: 1.2rem;
-      font-weight: 800;
-    }
-    .admin-sidebar-header span { color: var(--primary); }
-    .admin-nav-menu {
-      list-style: none;
-      padding: 1rem 0;
-      flex: 1;
-    }
-    .admin-nav-item {
-      padding: 0.85rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #94a3b8;
-      cursor: pointer;
-      font-size: 0.92rem;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .admin-nav-item:hover, .admin-nav-item.active {
-      background: rgba(225, 29, 72, 0.15);
-      color: #ffffff;
-      border-left: 4px solid var(--primary);
-    }
-    .admin-nav-item i { width: 20px; font-size: 1.05rem; }
-
-    .admin-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-    .admin-topbar {
-      background: white;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .admin-main-body {
-      padding: 2rem;
-      flex: 1;
-    }
-    .admin-tab-pane {
-      display: none;
-    }
-    .admin-tab-pane.active {
-      display: block;
-      animation: fadeIn 0.2s ease-out;
-    }
-
-    .admin-card {
-      background: white;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Modals & Forms */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .modal-box {
-      background: white;
-      width: 100%;
-      max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-md);
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.8rem;
-    }
-    .form-group { margin-bottom: 0.85rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 0.65rem 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      outline: none;
-      background: #f8fafc;
-    }
-    .upload-box {
-      border: 2px dashed #cbd5e1;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      background: #f8fafc;
-    }
-    .preview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
-    .preview-thumb { width: 100%; height: 55px; object-fit: cover; border-radius: 6px; }
-
-    /* Admin Tables */
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-    .admin-table th, .admin-table td {
-      padding: 10px 14px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-    .admin-table th {
-      background: #f8fafc;
-      color: var(--text-muted);
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 768px) {
-      .admin-layout { flex-direction: column; }
-      .admin-sidebar { width: 100%; }
-      .detail-hero-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .specs-grid { grid-template-columns: 1fr 1fr; }
-      .bike-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ========================================================
-       WINDOW 1: PUBLIC STOREFRONT (No Admin visible)
-       ======================================================== -->
-  <div id="publicStoreView">
-    <header class="navbar">
-      <div class="logo" id="secretLogoTrigger">
-        <i class="fa-solid fa-motorcycle"></i> Hathgaon <span>Motors</span>
-      </div>
-      <div class="nav-actions">
-        <!-- Kept clean for visitors -->
-      </div>
-    </header>
-
-    <div id="catalogSection">
-      <section class="hero">
-        <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> 100% Certified Dealership</div>
-        <h1>Premium Pre-Owned Bikes</h1>
-        <p>Direct buy & verified bikes from Hathgaon Motors. Click on any bike to see complete A to Z details.</p>
-      </section>
-
-      <div class="filter-wrapper">
-        <div class="search-card">
-          <div class="search-input-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search bike model (e.g. Pulsar, Classic, R15)...">
-          </div>
-          <select class="filter-select" id="brandFilter">
-            <option value="all">All Brands</option>
-            <option value="Yamaha">Yamaha</option>
-            <option value="Royal Enfield">Royal Enfield</option>
-            <option value="Bajaj">Bajaj</option>
-            <option value="Hero">Hero</option>
-            <option value="Honda">Honda</option>
-            <option value="TVS">TVS</option>
-          </select>
-        </div>
-      </div>
-
-      <main class="container">
-        <div class="section-title">
-          <h2>Available Stock</h2>
-          <span id="stockCount">In Stock</span>
-        </div>
-        <div class="bike-grid" id="bikeGrid"></div>
-      </main>
-    </div>
-
-    <!-- Detail View Inside Public Store -->
-    <div id="detailSection" class="container" style="margin-top: 2rem;">
-      <div style="margin-bottom: 1.5rem;">
-        <button class="btn btn-admin" onclick="showCatalog()">
-          <i class="fa-solid fa-arrow-left"></i> Back to All Bikes
-        </button>
-      </div>
-
-      <div class="detail-card">
-        <div class="detail-hero-grid">
-          <div>
-            <img src="" id="detailMainImg" class="detail-main-img" alt="Bike">
-            <div class="gallery-thumbs" id="detailThumbs"></div>
-          </div>
-          <div>
-            <div id="detailBadgeContainer" style="margin-bottom: 8px;"></div>
-            <h1 id="detailTitle" style="font-size:1.8rem; font-weight:800; margin-bottom:0.5rem;"></h1>
-            <p id="detailSubtitle" style="color:var(--text-muted); font-size:0.95rem;"></p>
-            
-            <div class="detail-price-box">
-              <span id="detailPriceLabel" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Hathgaon Motors Demand Price</span>
-              <div id="detailPriceArea" style="margin-top:4px;"></div>
-              <span style="font-size:0.8rem; color:#16a34a; font-weight:600;"><i class="fa-solid fa-check"></i> Best Price Guarantee • Immediate Transfer</span>
-            </div>
-
-            <div style="display:flex; flex-direction:column; gap:10px;">
-              <a href="#" id="detailCallBtn" class="btn btn-call" style="padding:0.9rem; font-size:1rem;">
-                <i class="fa-solid fa-phone"></i> Call Now (+91 8756425896)
-              </a>
-              <a href="#" id="detailWaBtn" target="_blank" class="btn btn-wa" style="padding:0.9rem; font-size:1rem;">
-                <i class="fa-brands fa-whatsapp"></i> Chat & Buy on WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div style="font-size:1.2rem; font-weight:800; margin-bottom:1rem; display:flex; align-items:center; gap:8px;">
-          <i class="fa-solid fa-file-contract" style="color:var(--primary);"></i> Complete Bike Details & Verification
-        </div>
-        <div class="specs-grid" id="detailSpecsGrid"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================
-       WINDOW 2: DEDICATED FULL-WINDOW ADMIN PANEL
-       ======================================================== -->
-  <div id="adminPortalView">
-    <div class="admin-layout">
-      <!-- Admin Sidebar -->
-      <aside class="admin-sidebar">
-        <div class="admin-sidebar-header">
-          Hathgaon <span>Admin</span>
-        </div>
-        <ul class="admin-nav-menu">
-          <li class="admin-nav-item active" onclick="switchAdminTab('stockTab', this)">
-            <i class="fa-solid fa-motorcycle"></i> Inventory & Stock
-          </li>
-          <li class="admin-nav-item" onclick="switchAdminTab('subAdminsTab', this)">
-            <i class="fa-solid fa-users-gear"></i> Sub-Admins
-          </li>
-          <li class="admin-nav-item" onclick="switchAdminTab('sellersTab', this)">
-            <i class="fa-solid fa-id-card-clip"></i> Sellers & Referral
-          </li>
-          <li class="admin-nav-item" onclick="switchAdminTab('securityTab', this)">
-            <i class="fa-solid fa-key"></i> Password & Security
-          </li>
-        </ul>
-        <div style="padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-          <button class="btn btn-danger btn-sm" style="width: 100%;" onclick="handleAdminLogout()">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
-          </button>
-        </div>
-      </aside>
-
-      <!-- Admin Main Area -->
-      <main class="admin-content">
-        <div class="admin-topbar">
-          <div>
-            <h2 id="adminHeaderTitle" style="font-size:1.3rem; font-weight:800;">Inventory & Stock Management</h2>
-            <span style="font-size:0.8rem; color:var(--text-muted);">Hathgaon Motors Dealership Portal</span>
-          </div>
-          <div>
-            <button class="btn btn-admin btn-sm" onclick="switchToPublicStore()">
-              <i class="fa-solid fa-eye"></i> View Public Store
-            </button>
-          </div>
-        </div>
-
-        <div class="admin-main-body">
-
-          <!-- TAB 1: INVENTORY & STOCK -->
-          <div id="stockTab" class="admin-tab-pane active">
-            <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
-              <div>
-                <h3 style="font-size:1.1rem; font-weight:700;">Vehicle Inventory</h3>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Manage uploaded bikes, drop prices, or mark sold</p>
-              </div>
-              <button class="btn btn-primary" onclick="openUploadForm()">
-                <i class="fa-solid fa-plus"></i> Upload New Bike
-              </button>
-            </div>
-
-            <div class="admin-card">
-              <div id="adminInventoryList"></div>
-            </div>
-          </div>
-
-          <!-- TAB 2: SUB-ADMINS -->
-          <div id="subAdminsTab" class="admin-tab-pane">
-            <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Add Sub-Admin (Niche Wale Admin)</h3>
-              <form id="addSubAdminForm" onsubmit="handleAddSubAdmin(event)" class="form-row">
-                <div class="form-group">
-                  <label>Sub-Admin Name</label>
-                  <input type="text" id="subAdminName" placeholder="e.g. Rahul Sharma" required>
-                </div>
-                <div class="form-group">
-                  <label>Login Username</label>
-                  <input type="text" id="subAdminUser" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" id="subAdminPass" placeholder="Password" required>
-                </div>
-                <div class="form-group" style="display:flex; align-items:flex-end;">
-                  <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fa-solid fa-user-plus"></i> Create Sub-Admin</button>
-                </div>
-              </form>
-            </div>
-
-            <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Existing Sub-Admins</h3>
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody id="subAdminTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- TAB 3: SELLERS & REFERRALS -->
-          <div id="sellersTab" class="admin-tab-pane">
-            <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700;">Generate Seller Referral Code</h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Generate an exclusive referral link/code for third-party sellers</p>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <input type="text" id="generatedRefCode" readonly style="max-width:250px; font-weight:800; font-size:1.1rem; color:var(--primary); background:#fff1f2; border:1px dashed var(--primary); padding:0.6rem 1rem; border-radius:8px;">
-                <button class="btn btn-primary" onclick="generateNewReferral()"><i class="fa-solid fa-arrows-rotate"></i> Generate Code</button>
-              </div>
-            </div>
-
-            <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Register Seller (KYC & Documents)</h3>
-              <form id="sellerRegisterForm" onsubmit="handleRegisterSeller(event)">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Assigned Referral Code</label>
-                    <input type="text" id="sellerRefCode" placeholder="Enter or Paste Referral Code" required>
-                  </div>
-                  <div class="form-group">
-                    <label>Seller Full Name</label>
-                    <input type="text" id="sellerName" placeholder="Full legal name" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="sellerPhone" placeholder="+91..." required>
-                  </div>
-                  <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" id="sellerAddress" placeholder="Full residential/shop address" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Aadhar Card Number</label>
-                    <input type="text" id="sellerAadhar" placeholder="12-digit Aadhar number" required>
-                  </div>
-                  <div class="form-group">
-                    <label>PAN Card Number</label>
-                    <input type="text" id="sellerPan" placeholder="10-digit PAN (e.g. ABCDE1234F)" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>Seller Photo (Upload)</label>
-                  <input type="file" id="sellerPhotoInput" accept="image/*" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="margin-top:10px;"><i class="fa-solid fa-user-check"></i> Save Seller Profile</button>
-              </form>
-            </div>
-
-            <div class="admin-card">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">Registered Sellers</h3>
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Photo</th>
-                    <th>Name & Ref</th>
-                    <th>Contact & Address</th>
-                    <th>Aadhar & PAN</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody id="sellersTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- TAB 4: PASSWORD & SECURITY -->
-          <div id="securityTab" class="admin-tab-pane">
-            <div class="admin-card" style="max-width:500px;">
-              <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Reset Super Admin Password</h3>
-              <form id="resetPassForm" onsubmit="handleResetPassword(event)">
-                <div class="form-group">
-                  <label>Current Password</label>
-                  <input type="password" id="currentPassInput" required>
-                </div>
-                <div class="form-group">
-                  <label>New Password</label>
-                  <input type="password" id="newPassInput" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Update Password</button>
-              </form>
-            </div>
-          </div>
-
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <!-- Login Modal -->
-  <div class="modal" id="loginModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Admin Portal Login</h3>
-        <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-      </div>
-      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" id="adminUser" placeholder="Username" required>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="adminPass" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Upload/Edit Bike Modal -->
-  <div class="modal" id="bikeFormModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="formModalTitle">Add Bike with Full Details</h3>
-        <span class="close-btn" onclick="closeModal('bikeFormModal')">&times;</span>
-      </div>
-      <form id="bikeSaveForm" onsubmit="handleSaveBike(event)">
-        <input type="hidden" id="editBikeId">
-
-        <div class="form-group">
-          <label>Bike Model Name</label>
-          <input type="text" id="bikeName" placeholder="e.g. Yamaha R15 V4 Racing Blue" required>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label>Brand</label>
-            <select id="bikeBrand" required>
-              <option value="Yamaha">Yamaha</option>
-              <option value="Royal Enfield">Royal Enfield</option>
-              <option value="Bajaj">Bajaj</option>
-              <option value="Hero">Hero</option>
-              <option value="Honda">Honda</option>
-              <option value="TVS">TVS</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Demand Price (₹)</label>
-            <input type="text" id="bikePrice" placeholder="e.g. 1,55,000" required>
-          </div>
-        </div>
-
-        <div class="form-group" style="background:#fff1f2; padding:10px; border-radius:8px; border:1px dashed #fda4af;">
-          <label style="color:#be123c; display:flex; justify-content:space-between;">
-            <span><i class="fa-solid fa-tags"></i> Dropped / Offer Price (Optional)</span>
-            <span style="font-weight:normal; font-size:0.75rem;">Leave empty if no discount</span>
-          </label>
-          <input type="text" id="bikeDroppedPrice" placeholder="e.g. 1,22,000">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Model Year</label>
-            <input type="text" id="bikeYear" placeholder="e.g. 2023" required>
-          </div>
-          <div class="form-group">
-            <label>Kilometers Driven</label>
-            <input type="text" id="bikeKm" placeholder="e.g. 9,500 km" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Purchase / Reg Date</label>
-            <input type="text" id="bikePurchaseDate" placeholder="e.g. March 2023" required>
-          </div>
-          <div class="form-group">
-            <label>Ownership</label>
-            <select id="bikeOwner">
-              <option value="1st Owner (Single Hand)">1st Owner (Single Hand)</option>
-              <option value="2nd Owner">2nd Owner</option>
-              <option value="3rd Owner">3rd Owner</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Insurance Status</label>
-            <select id="bikeInsurance">
-              <option value="Valid (Till Dec 2027)">Valid (Till Dec 2027)</option>
-              <option value="Valid (1st Party)">Valid (1st Party)</option>
-              <option value="Valid (3rd Party)">Valid (3rd Party)</option>
-              <option value="Expired">Expired</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>RC & Papers</label>
-            <select id="bikePapers">
-              <option value="All Clear (Original RC + NOC Ready)">All Clear (Original RC + NOC Ready)</option>
-              <option value="Original RC Available">Original RC Available</option>
-              <option value="Under Process">Under Process</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>RTO / Passing</label>
-            <input type="text" id="bikeRto" placeholder="e.g. UP-71 (Fatehpur)" required>
-          </div>
-          <div class="form-group">
-            <label>Condition / State</label>
-            <input type="text" id="bikeCondition" placeholder="e.g. Mint / Scratchless" required>
-          </div>
-        </div>
-        
-        <div class="form-group" id="photoUploadGroup">
-          <label>Upload Bike Photos (Up to 10 photos)</label>
-          <div class="upload-box" onclick="document.getElementById('bikePhotosInput').click()">
-            <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem; color:var(--primary); margin-bottom:6px;"></i>
-            <p style="font-size:0.85rem; font-weight:600; color:var(--dark);">Tap to select photos from gallery</p>
-          </div>
-          <input type="file" id="bikePhotosInput" accept="image/*" multiple style="display:none;" onchange="handleImageSelection(event)">
-          <div class="preview-grid" id="previewGrid"></div>
-        </div>
-
-        <button type="submit" id="saveBikeSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Vehicle</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-    const DEALER_PHONE = "8756425896";
-
-    // Dynamic Credentials in LocalStorage
-    function getAdminCredentials() {
-      const stored = localStorage.getItem("hm_super_auth");
-      return stored ? JSON.parse(stored) : { user: "Hb123456789", pass: "Hb123456789" };
-    }
-
-    function getSubAdmins() {
-      const stored = localStorage.getItem("hm_sub_admins");
-      return stored ? JSON.parse(stored) : [];
-    }
-
-    function getSellers() {
-      const stored = localStorage.getItem("hm_sellers");
-      return stored ? JSON.parse(stored) : [];
-    }
-
-    let uploadedBase64Images = [];
-    let sellerBase64Photo = "";
-    let activeAdminUser = null;
-
-    // Initial Demo Stock
-    const defaultDemoStock = [
-      {
-        id: 101,
-        name: "Yamaha R15 V4 Racing Blue",
-        brand: "Yamaha",
-        price: "1,55,000",
-        droppedPrice: "1,22,000",
-        year: "2023",
-        km: "9,500 km",
-        purchaseDate: "March 2023",
-        owner: "1st Owner (Single Hand)",
-        insurance: "Valid (Till Dec 2027)",
-        papers: "All Clear (Original RC + NOC Ready)",
-        rto: "UP-71 (Fatehpur)",
-        condition: "Mint / Scratchless Condition",
-        isSold: false,
-        images: [
-          "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=700&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&auto=format&fit=crop"
-        ]
-      }
-    ];
-
-    function getStoredBikes() {
-      const stored = localStorage.getItem("hathgaon_bikes_full_v8");
-      return stored ? JSON.parse(stored) : defaultDemoStock;
-    }
-
-    function saveStoredBikes(bikes) {
-      localStorage.setItem("hathgaon_bikes_full_v8", JSON.stringify(bikes));
-    }
-
-    /* ========================================================
-       WINDOW SWITCHING LOGIC
-       ======================================================== */
-    function switchToAdminPortal() {
-      document.getElementById("publicStoreView").style.display = "none";
-      document.getElementById("adminPortalView").style.display = "block";
-      renderAdminDashboard();
-      renderSubAdmins();
-      renderSellers();
-      generateNewReferral();
-    }
-
-    function switchToPublicStore() {
-      document.getElementById("adminPortalView").style.display = "none";
-      document.getElementById("publicStoreView").style.display = "block";
-      renderBikes();
-    }
-
-    function switchAdminTab(tabId, el) {
-      document.querySelectorAll(".admin-tab-pane").forEach(p => p.classList.remove("active"));
-      document.querySelectorAll(".admin-nav-item").forEach(i => i.classList.remove("active"));
-      document.getElementById(tabId).classList.add("active");
-      el.classList.add("active");
-
-      const titleMap = {
-        stockTab: "Inventory & Stock Management",
-        subAdminsTab: "Sub-Admins & Permissions",
-        sellersTab: "Sellers & Referral Management",
-        securityTab: "Password & Security Management"
-      };
-      document.getElementById("adminHeaderTitle").innerText = titleMap[tabId];
-    }
-
-    /* ========================================================
-       SECRET ADMIN TRIGGER
-       ======================================================== */
-    let logoClickCount = 0;
-    let logoClickTimer = null;
-
-    document.getElementById("secretLogoTrigger").addEventListener("click", () => {
-      showCatalog();
-      logoClickCount++;
-      clearTimeout(logoClickTimer);
-      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1200);
-
-      if (logoClickCount >= 4) {
-        logoClickCount = 0;
-        if (activeAdminUser) {
-          switchToAdminPortal();
-        } else {
-          openModal("loginModal");
-        }
-      }
-    });
-
-    window.addEventListener("keydown", (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-        e.preventDefault();
-        if (activeAdminUser) {
-          switchToAdminPortal();
-        } else {
-          openModal("loginModal");
-        }
-      }
-    });
-
-    // Login Handler (Super Admin + Sub Admins)
-    function handleAdminLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById("adminUser").value.trim();
-      const pass = document.getElementById("adminPass").value.trim();
-      const superAuth = getAdminCredentials();
-      const subAdmins = getSubAdmins();
-
-      if (user === superAuth.user && pass === superAuth.pass) {
-        activeAdminUser = { name: "Super Admin", role: "SuperAdmin" };
-        closeModal("loginModal");
-        document.getElementById("adminLoginForm").reset();
-        switchToAdminPortal();
-      } else {
-        const matchedSub = subAdmins.find(sa => sa.user === user && sa.pass === pass);
-        if (matchedSub) {
-          activeAdminUser = { name: matchedSub.name, role: "SubAdmin" };
-          closeModal("loginModal");
-          document.getElementById("adminLoginForm").reset();
-          switchToAdminPortal();
-        } else {
-          alert("Invalid Username or Password! Access Denied.");
-        }
-      }
-    }
-
-    function handleAdminLogout() {
-      activeAdminUser = null;
-      switchToPublicStore();
-      alert("Logged out from admin window.");
-    }
-
-    /* ========================================================
-       TAB 1: INVENTORY MANAGEMENT
-       ======================================================== */
-    function renderAdminDashboard() {
-      const bikes = getStoredBikes();
-      const list = document.getElementById("adminInventoryList");
-      list.innerHTML = "";
-
-      if (bikes.length === 0) {
-        list.innerHTML = `<p style="text-align:center; color:#64748b; padding:1.5rem;">No vehicles found. Tap 'Upload New Bike' above to add one.</p>`;
-        return;
-      }
-
-      bikes.forEach(bike => {
-        const isSold = bike.isSold === true;
-        const hasDropped = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-        const item = document.createElement("div");
-        item.style.cssText = "display:flex; align-items:center; justify-content:space-between; padding:12px; border:1px solid #e2e8f0; border-radius:10px; margin-bottom:10px; background:#f8fafc; flex-wrap:wrap; gap:10px;";
-
-        item.innerHTML = `
-          <div style="display:flex; align-items:center; gap:12px;">
-            <img src="${(bike.images && bike.images[0]) || ''}" style="width:65px; height:50px; object-fit:cover; border-radius:8px;">
-            <div>
-              <h4 style="font-size:1rem; font-weight:700;">${bike.name} ${isSold ? '<span style="color:#dc2626; font-size:0.75rem; font-weight:800;">[SOLD OUT]</span>' : '<span style="color:#16a34a; font-size:0.75rem; font-weight:800;">[AVAILABLE]</span>'}</h4>
-              <p style="font-size:0.8rem; color:#64748b;">
-                Demand: ₹${bike.price} 
-                ${hasDropped ? `<strong style="color:var(--primary);">➔ Dropped: ₹${bike.droppedPrice}</strong>` : ''} 
-                • ${bike.year} • ${bike.km}
-              </p>
-            </div>
-          </div>
-          <div style="display:flex; gap:6px;">
-            <button class="btn btn-sm ${isSold ? 'btn-success' : 'btn-warning'}" onclick="toggleSoldStatus(${bike.id})">
-              <i class="fa-solid ${isSold ? 'fa-rotate-left' : 'fa-tag'}"></i> ${isSold ? 'Make Available' : 'Mark Sold'}
-            </button>
-            <button class="btn btn-sm btn-admin" onclick="openEditForm(${bike.id})">
-              <i class="fa-solid fa-pen-to-square"></i> Edit
-            </button>
-            <button class="btn btn-sm btn-danger" onclick="deleteBike(${bike.id})">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    function toggleSoldStatus(id) {
-      let bikes = getStoredBikes();
-      const bike = bikes.find(b => b.id === id);
-      if (bike) {
-        bike.isSold = !bike.isSold;
-        saveStoredBikes(bikes);
-        renderAdminDashboard();
-      }
-    }
-
-    function deleteBike(id) {
-      if (confirm("Permanently delete this bike?")) {
-        let bikes = getStoredBikes();
-        bikes = bikes.filter(b => b.id !== id);
-        saveStoredBikes(bikes);
-        renderAdminDashboard();
-      }
-    }
-
-    function openUploadForm() {
-      document.getElementById("bikeSaveForm").reset();
-      document.getElementById("editBikeId").value = "";
-      document.getElementById("bikeDroppedPrice").value = "";
-      document.getElementById("formModalTitle").innerText = "Upload New Bike";
-      document.getElementById("saveBikeSubmitBtn").innerText = "Publish Vehicle";
-      document.getElementById("previewGrid").innerHTML = "";
-      uploadedBase64Images = [];
-      openModal("bikeFormModal");
-    }
-
-    function openEditForm(id) {
-      const bikes = getStoredBikes();
-      const bike = bikes.find(b => b.id === id);
-      if (!bike) return;
-
-      document.getElementById("editBikeId").value = bike.id;
-      document.getElementById("formModalTitle").innerText = `Edit: ${bike.name}`;
-      document.getElementById("saveBikeSubmitBtn").innerText = "Update Vehicle Details";
-
-      document.getElementById("bikeName").value = bike.name;
-      document.getElementById("bikeBrand").value = bike.brand;
-      document.getElementById("bikePrice").value = bike.price;
-      document.getElementById("bikeDroppedPrice").value = bike.droppedPrice || "";
-      document.getElementById("bikeYear").value = bike.year;
-      document.getElementById("bikeKm").value = bike.km;
-      document.getElementById("bikePurchaseDate").value = bike.purchaseDate;
-      document.getElementById("bikeOwner").value = bike.owner;
-      document.getElementById("bikeInsurance").value = bike.insurance;
-      document.getElementById("bikePapers").value = bike.papers;
-      document.getElementById("bikeRto").value = bike.rto;
-      document.getElementById("bikeCondition").value = bike.condition;
-
-      uploadedBase64Images = bike.images || [];
-      const previewGrid = document.getElementById("previewGrid");
-      previewGrid.innerHTML = "";
-      uploadedBase64Images.forEach(src => {
-        const thumb = document.createElement("img");
-        thumb.className = "preview-thumb";
-        thumb.src = src;
-        previewGrid.appendChild(thumb);
-      });
-
-      openModal("bikeFormModal");
-    }
-
-    function handleImageSelection(event) {
-      const files = Array.from(event.target.files).slice(0, 10);
-      const previewGrid = document.getElementById("previewGrid");
-      previewGrid.innerHTML = "";
-      uploadedBase64Images = [];
-
-      files.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          uploadedBase64Images.push(e.target.result);
-          const thumb = document.createElement("img");
-          thumb.className = "preview-thumb";
-          thumb.src = e.target.result;
-          previewGrid.appendChild(thumb);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function handleSaveBike(e) {
-      e.preventDefault();
-      const currentBikes = getStoredBikes();
-      const editId = document.getElementById("editBikeId").value;
-
-      if (uploadedBase64Images.length === 0) {
-        alert("Please upload at least 1 photo!");
-        return;
-      }
-
-      const droppedVal = document.getElementById("bikeDroppedPrice").value.trim();
-
-      if (editId) {
-        const index = currentBikes.findIndex(b => b.id == editId);
-        if (index !== -1) {
-          currentBikes[index] = {
-            ...currentBikes[index],
-            name: document.getElementById("bikeName").value,
-            brand: document.getElementById("bikeBrand").value,
-            price: document.getElementById("bikePrice").value,
-            droppedPrice: droppedVal,
-            year: document.getElementById("bikeYear").value,
-            km: document.getElementById("bikeKm").value,
-            purchaseDate: document.getElementById("bikePurchaseDate").value,
-            owner: document.getElementById("bikeOwner").value,
-            insurance: document.getElementById("bikeInsurance").value,
-            papers: document.getElementById("bikePapers").value,
-            rto: document.getElementById("bikeRto").value,
-            condition: document.getElementById("bikeCondition").value,
-            images: uploadedBase64Images
-          };
-        }
-      } else {
-        const newBike = {
-          id: Date.now(),
-          name: document.getElementById("bikeName").value,
-          brand: document.getElementById("bikeBrand").value,
-          price: document.getElementById("bikePrice").value,
-          droppedPrice: droppedVal,
-          year: document.getElementById("bikeYear").value,
-          km: document.getElementById("bikeKm").value,
-          purchaseDate: document.getElementById("bikePurchaseDate").value,
-          owner: document.getElementById("bikeOwner").value,
-          insurance: document.getElementById("bikeInsurance").value,
-          papers: document.getElementById("bikePapers").value,
-          rto: document.getElementById("bikeRto").value,
-          condition: document.getElementById("bikeCondition").value,
-          isSold: false,
-          images: uploadedBase64Images
-        };
-        currentBikes.unshift(newBike);
-      }
-
-      try {
-        saveStoredBikes(currentBikes);
-      } catch (err) {
-        alert("Photos file size is large. Upload fewer photos.");
-        return;
-      }
-
-      closeModal("bikeFormModal");
-      renderAdminDashboard();
-      alert("Bike details saved!");
-    }
-
-    /* ========================================================
-       TAB 2: SUB-ADMINS MANAGEMENT
-       ======================================================== */
-    function renderSubAdmins() {
-      const list = getSubAdmins();
-      const tbody = document.getElementById("subAdminTableBody");
-      tbody.innerHTML = "";
-
-      if (list.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#64748b;">No Sub-Admins added yet.</td></tr>`;
-        return;
-      }
-
-      list.forEach((sa, i) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><strong>${sa.name}</strong></td>
-          <td>${sa.user}</td>
-          <td><span class="btn-sm btn-admin">Sub-Admin</span></td>
-          <td><button class="btn btn-sm btn-danger" onclick="deleteSubAdmin(${i})"><i class="fa-solid fa-trash"></i></button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function handleAddSubAdmin(e) {
-      e.preventDefault();
-      const list = getSubAdmins();
-      const name = document.getElementById("subAdminName").value.trim();
-      const user = document.getElementById("subAdminUser").value.trim();
-      const pass = document.getElementById("subAdminPass").value.trim();
-
-      list.push({ name, user, pass });
-      localStorage.setItem("hm_sub_admins", JSON.stringify(list));
-      document.getElementById("addSubAdminForm").reset();
-      renderSubAdmins();
-      alert("Sub-admin created successfully!");
-    }
-
-    function deleteSubAdmin(index) {
-      if (confirm("Remove this Sub-Admin?")) {
-        let list = getSubAdmins();
-        list.splice(index, 1);
-        localStorage.setItem("hm_sub_admins", JSON.stringify(list));
-        renderSubAdmins();
-      }
-    }
-
-    /* ========================================================
-       TAB 3: SELLERS & REFERRALS
-       ======================================================== */
-    function generateNewReferral() {
-      const randomCode = "HM-" + Math.floor(10000 + Math.random() * 90000);
-      document.getElementById("generatedRefCode").value = randomCode;
-      document.getElementById("sellerRefCode").value = randomCode;
-    }
-
-    document.getElementById("sellerPhotoInput").addEventListener("change", function(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => { sellerBase64Photo = event.target.result; };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    function handleRegisterSeller(e) {
-      e.preventDefault();
-      const sellers = getSellers();
-
-      const newSeller = {
-        id: Date.now(),
-        refCode: document.getElementById("sellerRefCode").value.trim(),
-        name: document.getElementById("sellerName").value.trim(),
-        phone: document.getElementById("sellerPhone").value.trim(),
-        address: document.getElementById("sellerAddress").value.trim(),
-        aadhar: document.getElementById("sellerAadhar").value.trim(),
-        pan: document.getElementById("sellerPan").value.trim(),
-        photo: sellerBase64Photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100"
-      };
-
-      sellers.unshift(newSeller);
-      localStorage.setItem("hm_sellers", JSON.stringify(sellers));
-      document.getElementById("sellerRegisterForm").reset();
-      sellerBase64Photo = "";
-      renderSellers();
-      generateNewReferral();
-      alert("Seller profile & KYC registered successfully!");
-    }
-
-    function renderSellers() {
-      const sellers = getSellers();
-      const tbody = document.getElementById("sellersTableBody");
-      tbody.innerHTML = "";
-
-      if (sellers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#64748b;">No registered sellers found.</td></tr>`;
-        return;
-      }
-
-      sellers.forEach((s, idx) => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td><img src="${s.photo}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;"></td>
-          <td><strong>${s.name}</strong><br><span style="color:var(--primary); font-size:0.75rem; font-weight:700;">Ref: ${s.refCode}</span></td>
-          <td>${s.phone}<br><span style="font-size:0.75rem; color:#64748b;">${s.address}</span></td>
-          <td>Aadhar: <strong>${s.aadhar}</strong><br>PAN: <strong>${s.pan}</strong></td>
-          <td><button class="btn btn-sm btn-danger" onclick="deleteSeller(${idx})"><i class="fa-solid fa-trash"></i></button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function deleteSeller(idx) {
-      if (confirm("Delete this seller record?")) {
-        let sellers = getSellers();
-        sellers.splice(idx, 1);
-        localStorage.setItem("hm_sellers", JSON.stringify(sellers));
-        renderSellers();
-      }
-    }
-
-    /* ========================================================
-       TAB 4: PASSWORD RESET
-       ======================================================== */
-    function handleResetPassword(e) {
-      e.preventDefault();
-      const currentAuth = getAdminCredentials();
-      const cur = document.getElementById("currentPassInput").value.trim();
-      const newP = document.getElementById("newPassInput").value.trim();
-
-      if (cur !== currentAuth.pass) {
-        alert("Current password does not match!");
-        return;
-      }
-
-      currentAuth.pass = newP;
-      localStorage.setItem("hm_super_auth", JSON.stringify(currentAuth));
-      document.getElementById("resetPassForm").reset();
-      alert("Admin password updated successfully!");
-    }
-
-    /* ========================================================
-       PUBLIC STORE FRONTEND RENDER
-       ======================================================== */
-    function renderBikes() {
-      const bikes = getStoredBikes();
-      const grid = document.getElementById("bikeGrid");
-      const countElem = document.getElementById("stockCount");
-      grid.innerHTML = "";
-
-      countElem.innerText = `${bikes.length} Total Vehicles`;
-
-      if (bikes.length === 0) {
-        grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:#fff; border-radius:14px;"><h3>No Vehicles Available</h3></div>`;
-        return;
-      }
-
-      bikes.forEach((bike) => {
-        const bikeImgs = (bike.images && bike.images.length > 0) ? bike.images : [];
-        const isSold = bike.isSold === true;
-        const hasDroppedPrice = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-        const finalActivePrice = hasDroppedPrice ? bike.droppedPrice : bike.price;
-
-        const waMessage = encodeURIComponent(`Hello Hathgaon Motors, I want to buy this bike: ${bike.name} (Price: ₹${finalActivePrice}). Is it available?`);
-        
-        const card = document.createElement("div");
-        card.className = "bike-card";
-        card.setAttribute("data-brand", bike.brand);
-        card.setAttribute("data-name", bike.name);
-
-        let priceHtml = isSold 
-          ? `<span class="price-value" style="text-decoration:line-through; color:#94a3b8;">₹${finalActivePrice}</span>`
-          : (hasDroppedPrice 
-              ? `<div class="price-box"><span class="price-original-cut">₹${bike.price}</span><span class="price-value" style="color:var(--primary);">₹${bike.droppedPrice}</span></div>`
-              : `<span class="price-value">₹${bike.price}</span>`);
-
-        let badgeHtml = isSold 
-          ? `<span class="sold-badge"><i class="fa-solid fa-lock"></i> SOLD OUT</span>`
-          : (hasDroppedPrice 
-              ? `<span class="price-drop-badge"><i class="fa-solid fa-arrow-trend-down"></i> Price Dropped</span>`
-              : `<span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Inspected</span>`);
-
-        card.innerHTML = `
-          <div class="bike-img-wrap" onclick="openDetailPage(${bike.id})">
-            ${badgeHtml}
-            <span class="photo-counter">${bikeImgs.length} Photos</span>
-            <img src="${bikeImgs[0] || ''}" alt="${bike.name}" style="${isSold ? 'opacity:0.65; filter:grayscale(40%);' : ''}">
-          </div>
-          <div class="bike-content">
-            <h3 onclick="openDetailPage(${bike.id})">${bike.name}</h3>
-            <div class="bike-specs" onclick="openDetailPage(${bike.id})">
-              <span><i class="fa-solid fa-calendar"></i> ${bike.year}</span> • 
-              <span><i class="fa-solid fa-gauge-high"></i> ${bike.km}</span> • 
-              <span>${bike.owner}</span>
-            </div>
-            <div class="card-footer">
-              <div class="price-row" onclick="openDetailPage(${bike.id})">
-                <span style="font-size:0.8rem; color:#64748b;">${hasDroppedPrice && !isSold ? 'Offer Price' : 'Demand Price'}</span>
-                ${priceHtml}
-              </div>
-              <div class="action-row">
-                <a href="${isSold ? 'javascript:void(0)' : `tel:+91${DEALER_PHONE}`}" class="btn btn-call ${isSold ? 'btn-disabled' : ''}" onclick="event.stopPropagation();">
-                  <i class="fa-solid fa-phone"></i> ${isSold ? 'Sold' : 'Call'}
-                </a>
-                <a href="${isSold ? 'javascript:void(0)' : `https://wa.me/91${DEALER_PHONE}?text=${waMessage}`}" target="${isSold ? '_self' : '_blank'}" class="btn btn-wa ${isSold ? 'btn-disabled' : ''}" onclick="event.stopPropagation();">
-                  <i class="fa-brands fa-whatsapp"></i> ${isSold ? 'Sold Out' : 'WhatsApp'}
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function openDetailPage(bikeId) {
-      const bikes = getStoredBikes();
-      const bike = bikes.find(b => b.id == bikeId);
-      if (!bike) return;
-
-      document.getElementById("catalogSection").style.display = "none";
-      document.getElementById("detailSection").style.display = "block";
-      window.scrollTo(0, 0);
-
-      const isSold = bike.isSold === true;
-      const hasDroppedPrice = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-      const finalPrice = hasDroppedPrice ? bike.droppedPrice : bike.price;
-
-      const badgeContainer = document.getElementById("detailBadgeContainer");
-      badgeContainer.innerHTML = isSold 
-        ? `<span class="btn-sm btn-danger"><i class="fa-solid fa-circle-xmark"></i> THIS VEHICLE IS SOLD OUT</span>`
-        : (hasDroppedPrice 
-            ? `<span class="price-drop-badge" style="position:static; display:inline-flex;"><i class="fa-solid fa-arrow-trend-down"></i> Limited Time Offer</span>`
-            : `<span class="btn-sm btn-success"><i class="fa-solid fa-shield-check"></i> Certified Available</span>`);
-
-      document.getElementById("detailTitle").innerText = bike.name;
-      document.getElementById("detailSubtitle").innerText = `${bike.brand} • ${bike.year} Model • ${bike.condition}`;
-      
-      const priceArea = document.getElementById("detailPriceArea");
-      const priceLabel = document.getElementById("detailPriceLabel");
-
-      if (isSold) {
-        priceLabel.innerText = "Final Sale Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; text-decoration:line-through; color:#94a3b8;">₹${finalPrice}</div>`;
-      } else if (hasDroppedPrice) {
-        priceLabel.innerText = "Special Reduced Offer Price";
-        priceArea.innerHTML = `
-          <div style="display:flex; align-items:baseline; gap:12px;">
-            <span style="font-size:1.3rem; color:#94a3b8; text-decoration:line-through;">₹${bike.price}</span>
-            <span style="font-size:2.2rem; font-weight:800; color:var(--primary);">₹${bike.droppedPrice}</span>
-          </div>
-        `;
-      } else {
-        priceLabel.innerText = "Hathgaon Motors Demand Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; color:var(--primary);">₹${bike.price}</div>`;
-      }
-
-      const callBtn = document.getElementById("detailCallBtn");
-      const waBtn = document.getElementById("detailWaBtn");
-
-      if (isSold) {
-        callBtn.className = "btn btn-call btn-disabled";
-        callBtn.innerText = "Vehicle Already Sold Out";
-        waBtn.className = "btn btn-wa btn-disabled";
-        waBtn.innerText = "Sold Out";
-      } else {
-        const waMsg = encodeURIComponent(`Hello Hathgaon Motors, I saw ${bike.name} (Price ₹${finalPrice}). I want to buy it.`);
-        callBtn.className = "btn btn-call";
-        callBtn.innerHTML = `<i class="fa-solid fa-phone"></i> Call Now (+91 8756425896)`;
-        callBtn.href = `tel:+91${DEALER_PHONE}`;
-        waBtn.className = "btn btn-wa";
-        waBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Chat & Buy on WhatsApp`;
-        waBtn.href = `https://wa.me/91${DEALER_PHONE}?text=${waMsg}`;
-      }
-
-      const mainImg = document.getElementById("detailMainImg");
-      const thumbsContainer = document.getElementById("detailThumbs");
-      thumbsContainer.innerHTML = "";
-      mainImg.src = bike.images[0] || '';
-
-      bike.images.forEach((imgUrl, idx) => {
-        const thumb = document.createElement("img");
-        thumb.src = imgUrl;
-        thumb.className = `gallery-thumb ${idx === 0 ? 'active' : ''}`;
-        thumb.onclick = () => {
-          mainImg.src = imgUrl;
-          document.querySelectorAll(".gallery-thumb").forEach(t => t.classList.remove("active"));
-          thumb.classList.add("active");
-        };
-        thumbsContainer.appendChild(thumb);
-      });
-
-      const specsGrid = document.getElementById("detailSpecsGrid");
-      specsGrid.innerHTML = `
-        <div class="spec-item"><span class="label">Model Year</span><span class="val">${bike.year}</span></div>
-        <div class="spec-item"><span class="label">Purchase Date</span><span class="val">${bike.purchaseDate}</span></div>
-        <div class="spec-item"><span class="label">KM Driven</span><span class="val">${bike.km}</span></div>
-        <div class="spec-item"><span class="label">Ownership</span><span class="val">${bike.owner}</span></div>
-        <div class="spec-item"><span class="label">Insurance</span><span class="val" style="color:#16a34a;">${bike.insurance}</span></div>
-        <div class="spec-item"><span class="label">RC & Papers</span><span class="val" style="color:#16a34a;">${bike.papers}</span></div>
-        <div class="spec-item"><span class="label">RTO Passing</span><span class="val">${bike.rto}</span></div>
-        <div class="spec-item"><span class="label">Condition</span><span class="val">${bike.condition}</span></div>
-      `;
-    }
-
-    function showCatalog() {
-      document.getElementById("detailSection").style.display = "none";
-      document.getElementById("catalogSection").style.display = "block";
-      window.scrollTo(0, 0);
-    }
-
-    function openModal(id) { document.getElementById(id).style.display = "flex"; }
-    function closeModal(id) { document.getElementById(id).style.display = "none"; }
-
-    // Live Search
-    const searchInput = document.getElementById("searchInput");
-    const brandFilter = document.getElementById("brandFilter");
-
-    function filterBikes() {
-      const query = searchInput.value.toLowerCase();
-      const brand = brandFilter.value;
-      const cards = document.querySelectorAll(".bike-card");
-
-      cards.forEach(card => {
-        const name = card.getAttribute("data-name").toLowerCase();
-        const cardBrand = card.getAttribute("data-brand");
-        const matchSearch = name.includes(query);
-        const matchBrand = (brand === "all" || cardBrand === brand);
-        card.style.display = (matchSearch && matchBrand) ? "flex" : "none";
-      });
-    }
-
-    searchInput.addEventListener("input", filterBikes);
-    brandFilter.addEventListener("change", filterBikes);
-
-    // Initial Load
-    renderBikes();
-  </script>
-</body>
-</html>
-
-    }
-
-    .card-footer {
-      margin-top: auto;
-      border-top: 1px solid #f1f5f9;
-      padding-top: 0.9rem;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .price-box {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .price-original-cut {
-      font-size: 0.95rem;
-      color: #94a3b8;
-      text-decoration: line-through;
-      font-weight: 600;
-    }
-
-    .price-value {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--dark);
-    }
-
-    .action-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    /* Full Detail Page Section */
-    #detailSection {
-      display: none;
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .back-btn-bar {
-      margin-bottom: 1.5rem;
-    }
-
-    .detail-card {
-      background: white;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      padding: 1.75rem;
-    }
-
-    .detail-hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .detail-gallery {
-      position: relative;
-    }
-
-    .detail-main-img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      border-radius: 14px;
-      background: #0f172a;
-    }
-
-    .gallery-thumbs {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      overflow-x: auto;
-      padding-bottom: 5px;
-    }
-
-    .gallery-thumb {
-      width: 70px;
-      height: 55px;
-      border-radius: 8px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.2s;
-    }
-
-    .gallery-thumb.active {
-      border-color: var(--primary);
-      transform: scale(1.04);
-    }
-
-    .detail-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .detail-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-
-    .detail-price-box {
-      background: #f8fafc;
-      padding: 1.2rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      margin: 1.2rem 0;
-    }
-
-    .spec-table-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-      background: #f8fafc;
-      padding: 1.5rem;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-
-    .spec-item {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .spec-item .label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .spec-item .val {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .badge-ok {
-      color: #16a34a;
-      background: #dcfce7;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: inline-block;
-      width: fit-content;
-    }
-
-    .badge-sold {
-      color: #dc2626;
-      background: #fee2e2;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: inline-block;
-      width: fit-content;
-    }
-
-    /* Modals */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .modal-box {
-      background: white;
-      width: 100%;
-      max-width: 540px;
-      max-height: 90vh;
-      overflow-y: auto;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow-md);
-    }
-
-    .modal-box-large {
-      max-width: 750px;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.8rem;
-    }
-
-    .close-btn {
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-
-    /* Admin Inventory */
-    .admin-inventory-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 1rem;
-    }
-
-    .admin-bike-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #f8fafc;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .admin-bike-item img {
-      width: 60px;
-      height: 45px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .admin-bike-meta {
-      flex: 1;
-      min-width: 180px;
-    }
-
-    .admin-bike-meta h4 {
-      font-size: 0.95rem;
-      margin-bottom: 2px;
-    }
-
-    .admin-bike-meta p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .admin-actions-btns {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Forms */
-    .form-group {
-      margin-bottom: 0.85rem;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 0.65rem 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      outline: none;
-      background: #f8fafc;
-    }
-
-    .upload-box {
-      border: 2px dashed #cbd5e1;
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      background: #f8fafc;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .preview-thumb {
-      width: 100%;
-      height: 55px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .detail-hero-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-      .detail-main-img { height: 250px; }
-      .navbar { padding: 0.75rem 1rem; }
-      .hero { padding: 2.5rem 1rem 3.5rem; }
-      .hero h1 { font-size: 1.6rem; }
-      .filter-wrapper { margin-top: -1.8rem; }
-      .search-card { flex-direction: column; }
-      .search-input-box, .filter-select { width: 100%; }
-      .bike-grid { grid-template-columns: 1fr; }
-      .specs-grid { grid-template-columns: 1fr 1fr; }
-      .admin-bike-item { flex-direction: column; align-items: flex-start; }
-      .admin-actions-btns { width: 100%; justify-content: flex-end; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navbar (Cleaned: No Admin Button visible for normal customers) -->
-  <header class="navbar">
-    <div class="logo" id="secretLogoTrigger">
-      <i class="fa-solid fa-motorcycle"></i> Hathgaon <span>Motors</span>
-    </div>
-    <div class="nav-actions">
-      <!-- Only shown when Admin has actively logged in -->
-      <button class="btn btn-admin btn-sm" id="adminDashboardBtn" style="display:none;" onclick="openAdminDashboard()">
-        <i class="fa-solid fa-gauge-high"></i> Dashboard
-      </button>
-      <button class="btn btn-danger btn-sm" id="adminLogoutBtn" style="display:none;" onclick="handleAdminLogout()">
-        <i class="fa-solid fa-right-from-bracket"></i> Logout
-      </button>
-    </div>
-  </header>
-
-  <!-- Main Catalog View -->
-  <div id="catalogSection">
-    <section class="hero">
-      <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> 100% Certified Dealership</div>
-      <h1>Premium Pre-Owned Bikes</h1>
-      <p>Direct buy & verified bikes from Hathgaon Motors. Click on any bike to see complete A to Z details.</p>
-    </section>
-
-    <div class="filter-wrapper">
-      <div class="search-card">
-        <div class="search-input-box">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="searchInput" placeholder="Search bike model (e.g. Pulsar, Classic, R15)...">
-        </div>
-        <select class="filter-select" id="brandFilter">
-          <option value="all">All Brands</option>
-          <option value="Yamaha">Yamaha</option>
-          <option value="Royal Enfield">Royal Enfield</option>
-          <option value="Bajaj">Bajaj</option>
-          <option value="Hero">Hero</option>
-          <option value="Honda">Honda</option>
-          <option value="TVS">TVS</option>
-        </select>
-      </div>
-    </div>
-
-    <main class="container">
-      <div class="section-title">
-        <h2>Available Stock</h2>
-        <span id="stockCount">In Stock</span>
-      </div>
-
-      <div class="bike-grid" id="bikeGrid"></div>
-    </main>
-  </div>
-
-  <!-- Dedicated Bike Full Detail Page View -->
-  <div id="detailSection" class="container" style="margin-top: 2rem;">
-    <div class="back-btn-bar">
-      <button class="btn btn-admin" onclick="showCatalog()">
-        <i class="fa-solid fa-arrow-left"></i> Back to All Bikes
-      </button>
-    </div>
-
-    <div class="detail-card">
-      <div class="detail-hero-grid">
-        <!-- Gallery -->
-        <div class="detail-gallery">
-          <img src="" id="detailMainImg" class="detail-main-img" alt="Bike Full View">
-          <div class="gallery-thumbs" id="detailThumbs"></div>
-        </div>
-
-        <!-- Right Side Buying Actions -->
-        <div class="detail-info">
-          <div>
-            <div id="detailBadgeContainer" style="margin-bottom: 8px;"></div>
-            <h1 class="detail-title" id="detailTitle">Bike Model</h1>
-            <p id="detailSubtitle" style="color:var(--text-muted); font-size:0.95rem;"></p>
-            
-            <div class="detail-price-box">
-              <span id="detailPriceLabel" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Hathgaon Motors Demand Price</span>
-              <div id="detailPriceArea" style="margin-top:4px;"></div>
-              <span style="font-size:0.8rem; color:#16a34a; font-weight:600;"><i class="fa-solid fa-check"></i> Best Price Guarantee • Immediate Transfer</span>
-            </div>
-          </div>
-
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a href="#" id="detailCallBtn" class="btn btn-call" style="padding:0.9rem; font-size:1rem;">
-              <i class="fa-solid fa-phone"></i> Call Now (+91 8756425896)
-            </a>
-            <a href="#" id="detailWaBtn" target="_blank" class="btn btn-wa" style="padding:0.9rem; font-size:1rem;">
-              <i class="fa-brands fa-whatsapp"></i> Chat & Buy on WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- A to Z Full Details Specs Table -->
-      <div class="spec-table-title">
-        <i class="fa-solid fa-file-contract" style="color:var(--primary);"></i> Complete Bike Details & Verification
-      </div>
-      <div class="specs-grid" id="detailSpecsGrid"></div>
-    </div>
-  </div>
-
-  <!-- 1. Secret Admin Login Modal -->
-  <div class="modal" id="loginModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Admin Portal Login</h3>
-        <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-      </div>
-      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" id="adminUser" placeholder="Enter Admin Username" required>
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="adminPass" placeholder="Enter Admin Password" required>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 2. Admin Authority Dashboard Modal -->
-  <div class="modal" id="adminDashboardModal">
-    <div class="modal-box modal-box-large">
-      <div class="modal-header">
-        <div>
-          <h3>Dealer Admin Authority Dashboard</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Manage inventory, edit prices, mark sold, or add new vehicles.</p>
-        </div>
-        <span class="close-btn" onclick="closeModal('adminDashboardModal')">&times;</span>
-      </div>
-
-      <div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:12px; border-radius:10px; margin-bottom:1rem;">
-        <div>
-          <strong style="font-size:0.95rem;">Add New Stock</strong>
-          <p style="font-size:0.78rem; color:var(--text-muted); margin:0;">Upload fresh bike images & details</p>
-        </div>
-        <button class="btn btn-primary" onclick="openUploadForm()">
-          <i class="fa-solid fa-plus"></i> Upload New Bike
-        </button>
-      </div>
-
-      <h4 style="font-size:1rem; margin-top:1rem; margin-bottom:0.5rem;">Current Stock Management</h4>
-      <div class="admin-inventory-list" id="adminInventoryList"></div>
-    </div>
-  </div>
-
-  <!-- 3. Upload & Edit Bike Modal -->
-  <div class="modal" id="bikeFormModal">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="formModalTitle">Add Bike with Full Details</h3>
-        <span class="close-btn" onclick="closeModal('bikeFormModal')">&times;</span>
-      </div>
-      <form id="bikeSaveForm" onsubmit="handleSaveBike(event)">
-        <input type="hidden" id="editBikeId">
-
-        <div class="form-group">
-          <label>Bike Model Name</label>
-          <input type="text" id="bikeName" placeholder="e.g. Yamaha R15 V4 Racing Blue" required>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label>Brand</label>
-            <select id="bikeBrand" required>
-              <option value="Yamaha">Yamaha</option>
-              <option value="Royal Enfield">Royal Enfield</option>
-              <option value="Bajaj">Bajaj</option>
-              <option value="Hero">Hero</option>
-              <option value="Honda">Honda</option>
-              <option value="TVS">TVS</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Demand Price (₹)</label>
-            <input type="text" id="bikePrice" placeholder="e.g. 1,55,000" required>
-          </div>
-        </div>
-
-        <!-- Optional Dropped Price Row -->
-        <div class="form-group" style="background:#fff1f2; padding:10px; border-radius:8px; border:1px dashed #fda4af;">
-          <label style="color:#be123c; display:flex; justify-content:space-between;">
-            <span><i class="fa-solid fa-tags"></i> Dropped / Offer Price (Optional)</span>
-            <span style="font-weight:normal; font-size:0.75rem;">Leave empty if no discount</span>
-          </label>
-          <input type="text" id="bikeDroppedPrice" placeholder="e.g. 1,22,000 (Gira hua daam)">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Model Year</label>
-            <input type="text" id="bikeYear" placeholder="e.g. 2023" required>
-          </div>
-          <div class="form-group">
-            <label>Kilometers Driven</label>
-            <input type="text" id="bikeKm" placeholder="e.g. 9,500 km" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Purchase / Reg Date</label>
-            <input type="text" id="bikePurchaseDate" placeholder="e.g. March 2023" required>
-          </div>
-          <div class="form-group">
-            <label>Ownership</label>
-            <select id="bikeOwner">
-              <option value="1st Owner (Single Hand)">1st Owner (Single Hand)</option>
-              <option value="2nd Owner">2nd Owner</option>
-              <option value="3rd Owner">3rd Owner</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Insurance Status</label>
-            <select id="bikeInsurance">
-              <option value="Valid (Till Dec 2027)">Valid (Till Dec 2027)</option>
-              <option value="Valid (1st Party)">Valid (1st Party)</option>
-              <option value="Valid (3rd Party)">Valid (3rd Party)</option>
-              <option value="Expired">Expired</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>RC & Papers</label>
-            <select id="bikePapers">
-              <option value="All Clear (Original RC + NOC Ready)">All Clear (Original RC + NOC Ready)</option>
-              <option value="Original RC Available">Original RC Available</option>
-              <option value="Under Process">Under Process</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>RTO / Passing</label>
-            <input type="text" id="bikeRto" placeholder="e.g. UP-71 (Fatehpur)" required>
-          </div>
-          <div class="form-group">
-            <label>Condition / State</label>
-            <input type="text" id="bikeCondition" placeholder="e.g. Mint / Scratchless" required>
-          </div>
-        </div>
-        
-        <!-- Multiple Photo Upload -->
-        <div class="form-group" id="photoUploadGroup">
-          <label>Upload Bike Photos (Up to 10 photos)</label>
-          <div class="upload-box" onclick="document.getElementById('bikePhotosInput').click()">
-            <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem; color:var(--primary); margin-bottom:6px;"></i>
-            <p style="font-size:0.85rem; font-weight:600; color:var(--dark);">Tap to select photos from gallery</p>
-          </div>
-          <input type="file" id="bikePhotosInput" accept="image/*" multiple style="display:none;" onchange="handleImageSelection(event)">
-          <div class="preview-grid" id="previewGrid"></div>
-        </div>
-
-        <button type="submit" id="saveBikeSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Vehicle</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-    const DEALER_PHONE = "8756425896";
-    const AUTH_USER = "Hb123456789";
-    const AUTH_PASS = "Hb123456789";
-
-    let uploadedBase64Images = [];
-    let isAdminLoggedIn = false;
-
-    // Single demo bike
-    const defaultDemoStock = [
-      {
-        id: 101,
-        name: "Yamaha R15 V4 Racing Blue",
-        brand: "Yamaha",
-        price: "1,55,000",
-        droppedPrice: "1,22,000",
-        year: "2023",
-        km: "9,500 km",
-        purchaseDate: "March 2023",
-        owner: "1st Owner (Single Hand)",
-        insurance: "Valid (Till Dec 2027)",
-        papers: "All Clear (Original RC + NOC Ready)",
-        rto: "UP-71 (Fatehpur)",
-        condition: "Mint / Scratchless Condition",
-        isSold: false,
-        images: [
-          "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=700&auto=format&fit=crop",
-          "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=700&auto=format&fit=crop"
-        ]
-      }
-    ];
-
-    function getStoredBikes() {
-      const stored = localStorage.getItem("hathgaon_bikes_full_v7");
-      return stored ? JSON.parse(stored) : defaultDemoStock;
-    }
-
-    function saveStoredBikes(bikes) {
-      localStorage.setItem("hathgaon_bikes_full_v7", JSON.stringify(bikes));
-    }
-
-    // Render Cards in Catalog
-    function renderBikes() {
-      const bikes = getStoredBikes();
-      const grid = document.getElementById("bikeGrid");
-      const countElem = document.getElementById("stockCount");
-      grid.innerHTML = "";
-
-      countElem.innerText = `${bikes.length} Total Vehicles`;
-
-      if (bikes.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column:1/-1; text-align:center; padding:3rem; background:#fff; border-radius:14px; border:1px dashed var(--border);">
-            <h3>No Vehicles Available</h3>
-            <p style="color:#64748b;">Currently all bikes are out of stock. Please check back soon!</p>
-          </div>
-        `;
-        return;
-      }
-
-      bikes.forEach((bike) => {
-        const bikeImgs = (bike.images && bike.images.length > 0) ? bike.images : [];
-        const isSold = bike.isSold === true;
-        const hasDroppedPrice = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-        const finalActivePrice = hasDroppedPrice ? bike.droppedPrice : bike.price;
-
-        const waMessage = encodeURIComponent(`Hello Hathgaon Motors, I want to buy this bike: ${bike.name} (Price: ₹${finalActivePrice}). Is it available?`);
-        
-        const card = document.createElement("div");
-        card.className = "bike-card";
-        card.setAttribute("data-brand", bike.brand);
-        card.setAttribute("data-name", bike.name);
-
-        let priceHtml = '';
-        if (isSold) {
-          priceHtml = `<span class="price-value" style="text-decoration:line-through; color:#94a3b8;">₹${finalActivePrice}</span>`;
-        } else if (hasDroppedPrice) {
-          priceHtml = `
-            <div class="price-box">
-              <span class="price-original-cut">₹${bike.price}</span>
-              <span class="price-value" style="color:var(--primary);">₹${bike.droppedPrice}</span>
-            </div>
-          `;
-        } else {
-          priceHtml = `<span class="price-value">₹${bike.price}</span>`;
-        }
-
-        let badgeHtml = '';
-        if (isSold) {
-          badgeHtml = `<span class="sold-badge"><i class="fa-solid fa-lock"></i> SOLD OUT</span>`;
-        } else if (hasDroppedPrice) {
-          badgeHtml = `<span class="price-drop-badge"><i class="fa-solid fa-arrow-trend-down"></i> Price Dropped</span>`;
-        } else {
-          badgeHtml = `<span class="verified-tag"><i class="fa-solid fa-circle-check"></i> Inspected</span>`;
-        }
-
-        card.innerHTML = `
-          <div class="bike-img-wrap" onclick="openDetailPage(${bike.id})">
-            ${badgeHtml}
-            <span class="photo-counter">${bikeImgs.length} Photos</span>
-            <img src="${bikeImgs[0] || ''}" alt="${bike.name}" style="${isSold ? 'opacity:0.65; filter:grayscale(40%);' : ''}">
-          </div>
-          <div class="bike-content">
-            <h3 onclick="openDetailPage(${bike.id})">${bike.name}</h3>
-            <div class="bike-specs" onclick="openDetailPage(${bike.id})">
-              <span><i class="fa-solid fa-calendar"></i> ${bike.year}</span> • 
-              <span><i class="fa-solid fa-gauge-high"></i> ${bike.km}</span> • 
-              <span>${bike.owner}</span>
-            </div>
-            <div class="card-footer">
-              <div class="price-row" onclick="openDetailPage(${bike.id})">
-                <span style="font-size:0.8rem; color:#64748b;">${hasDroppedPrice && !isSold ? 'Offer Price' : 'Demand Price'}</span>
-                ${priceHtml}
-              </div>
-              <div class="action-row">
-                <a href="${isSold ? 'javascript:void(0)' : `tel:+91${DEALER_PHONE}`}" class="btn btn-call ${isSold ? 'btn-disabled' : ''}" onclick="event.stopPropagation();">
-                  <i class="fa-solid fa-phone"></i> ${isSold ? 'Sold' : 'Call'}
-                </a>
-                <a href="${isSold ? 'javascript:void(0)' : `https://wa.me/91${DEALER_PHONE}?text=${waMessage}`}" target="${isSold ? '_self' : '_blank'}" class="btn btn-wa ${isSold ? 'btn-disabled' : ''}" onclick="event.stopPropagation();">
-                  <i class="fa-brands fa-whatsapp"></i> ${isSold ? 'Sold Out' : 'WhatsApp'}
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    // Open Full Detail Page
-    function openDetailPage(bikeId) {
-      const bikes = getStoredBikes();
-      const bike = bikes.find(b => b.id == bikeId);
-      if (!bike) return;
-
-      document.getElementById("catalogSection").style.display = "none";
-      document.getElementById("detailSection").style.display = "block";
-      window.scrollTo(0, 0);
-
-      const isSold = bike.isSold === true;
-      const hasDroppedPrice = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-      const finalPrice = hasDroppedPrice ? bike.droppedPrice : bike.price;
-
-      const badgeContainer = document.getElementById("detailBadgeContainer");
-      if (isSold) {
-        badgeContainer.innerHTML = `<span class="badge-sold"><i class="fa-solid fa-circle-xmark"></i> THIS VEHICLE IS SOLD OUT</span>`;
-      } else if (hasDroppedPrice) {
-        badgeContainer.innerHTML = `<span class="price-drop-badge" style="position:static; display:inline-flex;"><i class="fa-solid fa-arrow-trend-down"></i> Limited Time Price Drop Deal</span>`;
-      } else {
-        badgeContainer.innerHTML = `<span class="badge-ok"><i class="fa-solid fa-shield-check"></i> Inspected & Certified Available</span>`;
-      }
-
-      document.getElementById("detailTitle").innerText = bike.name;
-      document.getElementById("detailSubtitle").innerText = `${bike.brand} • ${bike.year} Model • ${bike.condition}`;
-      
-      const priceArea = document.getElementById("detailPriceArea");
-      const priceLabel = document.getElementById("detailPriceLabel");
-
-      if (isSold) {
-        priceLabel.innerText = "Final Sale Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; text-decoration:line-through; color:#94a3b8;">₹${finalPrice}</div>`;
-      } else if (hasDroppedPrice) {
-        priceLabel.innerText = "Special Reduced Offer Price";
-        priceArea.innerHTML = `
-          <div style="display:flex; align-items:baseline; gap:12px;">
-            <span style="font-size:1.3rem; color:#94a3b8; text-decoration:line-through;">₹${bike.price}</span>
-            <span style="font-size:2.2rem; font-weight:800; color:var(--primary);">₹${bike.droppedPrice}</span>
-          </div>
-        `;
-      } else {
-        priceLabel.innerText = "Hathgaon Motors Demand Price";
-        priceArea.innerHTML = `<div class="price-value" style="font-size:2rem; color:var(--primary);">₹${bike.price}</div>`;
-      }
-
-      const callBtn = document.getElementById("detailCallBtn");
-      const waBtn = document.getElementById("detailWaBtn");
-
-      if (isSold) {
-        callBtn.className = "btn btn-call btn-disabled";
-        callBtn.innerText = "Vehicle Already Sold Out";
-        callBtn.href = "javascript:void(0)";
-        waBtn.className = "btn btn-wa btn-disabled";
-        waBtn.innerText = "Sold Out";
-        waBtn.href = "javascript:void(0)";
-      } else {
-        const waMsg = encodeURIComponent(`Hello Hathgaon Motors, I saw ${bike.name} with price ₹${finalPrice} (Model: ${bike.year}). I want to buy this bike.`);
-        callBtn.className = "btn btn-call";
-        callBtn.innerHTML = `<i class="fa-solid fa-phone"></i> Call Now (+91 8756425896)`;
-        callBtn.href = `tel:+91${DEALER_PHONE}`;
-        waBtn.className = "btn btn-wa";
-        waBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Chat & Buy on WhatsApp`;
-        waBtn.href = `https://wa.me/91${DEALER_PHONE}?text=${waMsg}`;
-      }
-
-      const mainImg = document.getElementById("detailMainImg");
-      const thumbsContainer = document.getElementById("detailThumbs");
-      thumbsContainer.innerHTML = "";
-      mainImg.src = bike.images[0] || '';
-
-      bike.images.forEach((imgUrl, idx) => {
-        const thumb = document.createElement("img");
-        thumb.src = imgUrl;
-        thumb.className = `gallery-thumb ${idx === 0 ? 'active' : ''}`;
-        thumb.onclick = () => {
-          mainImg.src = imgUrl;
-          document.querySelectorAll(".gallery-thumb").forEach(t => t.classList.remove("active"));
-          thumb.classList.add("active");
-        };
-        thumbsContainer.appendChild(thumb);
-      });
-
-      const specsGrid = document.getElementById("detailSpecsGrid");
-      specsGrid.innerHTML = `
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-calendar-check"></i> Model Year</span>
-          <span class="val">${bike.year}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-clock"></i> Purchase / Reg Date</span>
-          <span class="val">${bike.purchaseDate}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-road"></i> Kilometers Driven</span>
-          <span class="val">${bike.km}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-user-check"></i> Ownership</span>
-          <span class="val">${bike.owner}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-shield-halved"></i> Insurance Status</span>
-          <span class="val" style="color:#16a34a;"><i class="fa-solid fa-circle-check"></i> ${bike.insurance}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-id-card"></i> RC & Papers</span>
-          <span class="val" style="color:#16a34a;"><i class="fa-solid fa-circle-check"></i> ${bike.papers}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-location-dot"></i> RTO Passing</span>
-          <span class="val">${bike.rto}</span>
-        </div>
-        <div class="spec-item">
-          <span class="label"><i class="fa-solid fa-sparkles"></i> Bike Condition</span>
-          <span class="val">${bike.condition}</span>
-        </div>
-      `;
-    }
-
-    // Back to Catalog
-    function showCatalog() {
-      document.getElementById("detailSection").style.display = "none";
-      document.getElementById("catalogSection").style.display = "block";
-      window.scrollTo(0, 0);
-    }
-
-    // Modal Helpers
-    function openModal(id) { document.getElementById(id).style.display = "flex"; }
-    function closeModal(id) { document.getElementById(id).style.display = "none"; }
-
-    /* ========================================================
-       SECRET ADMIN TRIGGER (Hidden from Customers)
-       1. Quadruple Tap (4 clicks) on Logo text
-       2. Keyboard shortcut: Ctrl + Shift + A
-       ======================================================== */
-    let logoClickCount = 0;
-    let logoClickTimer = null;
-
-    document.getElementById("secretLogoTrigger").addEventListener("click", () => {
-      showCatalog(); // normal action: goes back to home
-      logoClickCount++;
-      clearTimeout(logoClickTimer);
-      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 1200);
-
-      if (logoClickCount >= 4) {
-        logoClickCount = 0;
-        if (isAdminLoggedIn) {
-          openAdminDashboard();
-        } else {
-          openModal("loginModal");
-        }
-      }
-    });
-
-    window.addEventListener("keydown", (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-        e.preventDefault();
-        if (isAdminLoggedIn) {
-          openAdminDashboard();
-        } else {
-          openModal("loginModal");
-        }
-      }
-    });
-
-    // Admin Login
-    function handleAdminLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById("adminUser").value.trim();
-      const pass = document.getElementById("adminPass").value.trim();
-
-      if (user === AUTH_USER && pass === AUTH_PASS) {
-        isAdminLoggedIn = true;
-        closeModal("loginModal");
-        document.getElementById("adminLoginForm").reset();
-        
-        // Reveal Dashboard and Logout in Navbar for Admin only
-        document.getElementById("adminDashboardBtn").style.display = "inline-flex";
-        document.getElementById("adminLogoutBtn").style.display = "inline-flex";
-
-        openAdminDashboard();
-      } else {
-        alert("Invalid credentials! Access denied.");
-      }
-    }
-
-    function openAdminDashboard() {
-      renderAdminDashboard();
-      openModal("adminDashboardModal");
-    }
-
-    // Admin Logout
-    function handleAdminLogout() {
-      isAdminLoggedIn = false;
-      document.getElementById("adminDashboardBtn").style.display = "none";
-      document.getElementById("adminLogoutBtn").style.display = "none";
-      closeModal("adminDashboardModal");
-      renderBikes();
-      alert("Admin logged out. Public view restored.");
-    }
-
-    // Render Admin Management Dashboard List
-    function renderAdminDashboard() {
-      const bikes = getStoredBikes();
-      const list = document.getElementById("adminInventoryList");
-      list.innerHTML = "";
-
-      if (bikes.length === 0) {
-        list.innerHTML = `<p style="text-align:center; color:#64748b; padding:1.5rem;">No vehicles found. Tap 'Upload New Bike' above to add one.</p>`;
-        return;
-      }
-
-      bikes.forEach(bike => {
-        const isSold = bike.isSold === true;
-        const hasDropped = bike.droppedPrice && bike.droppedPrice.trim() !== "";
-        const item = document.createElement("div");
-        item.className = "admin-bike-item";
-
-        item.innerHTML = `
-          <img src="${(bike.images && bike.images[0]) || ''}" alt="${bike.name}">
-          <div class="admin-bike-meta">
-            <h4>${bike.name} ${isSold ? '<span style="color:#dc2626; font-size:0.75rem; font-weight:800;">[SOLD OUT]</span>' : '<span style="color:#16a34a; font-size:0.75rem; font-weight:800;">[AVAILABLE]</span>'}</h4>
-            <p>
-              Demand: ₹${bike.price} 
-              ${hasDropped ? `<strong style="color:var(--primary); font-size:0.85rem;">➔ Dropped: ₹${bike.droppedPrice}</strong>` : ''} 
-              • ${bike.year} • ${bike.km}
-            </p>
-          </div>
-          <div class="admin-actions-btns">
-            <button class="btn btn-sm ${isSold ? 'btn-success' : 'btn-warning'}" onclick="toggleSoldStatus(${bike.id})" title="Toggle Sold Status">
-              <i class="fa-solid ${isSold ? 'fa-rotate-left' : 'fa-tag'}"></i> ${isSold ? 'Make Available' : 'Mark Sold'}
-            </button>
-            <button class="btn btn-sm btn-admin" onclick="openEditForm(${bike.id})" title="Edit Details">
-              <i class="fa-solid fa-pen-to-square"></i> Edit
-            </button>
-            <button class="btn btn-sm btn-danger" onclick="deleteBike(${bike.id})" title="Delete Bike">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        `;
-        list.appendChild(item);
-      });
-    }
-
-    // Toggle Sold / Available
-    function toggleSoldStatus(id) {
-      let bikes = getStoredBikes();
-      const bike = bikes.find(b => b.id === id);
-      if (bike) {
-        bike.isSold = !bike.isSold;
-        saveStoredBikes(bikes);
-        renderAdminDashboard();
-        renderBikes();
-      }
-    }
-
-    // Delete Bike
-    function deleteBike(id) {
-      if (confirm("Are you sure you want to permanently delete this bike?")) {
-        let bikes = getStoredBikes();
-        bikes = bikes.filter(b => b.id !== id);
-        saveStoredBikes(bikes);
-        renderAdminDashboard();
-        renderBikes();
-        showCatalog();
-      }
-    }
-
-    // Open Upload Form
-    function openUploadForm() {
-      document.getElementById("bikeSaveForm").reset();
-      document.getElementById("editBikeId").value = "";
-      document.getElementById("bikeDroppedPrice").value = "";
-      document.getElementById("formModalTitle").innerText = "Upload New Bike";
-      document.getElementById("saveBikeSubmitBtn").innerText = "Upload & Publish Vehicle";
-      document.getElementById("previewGrid").innerHTML = "";
-      uploadedBase64Images = [];
-      closeModal("adminDashboardModal");
-      openModal("bikeFormModal");
-    }
-
-    // Open Edit Form
-    function openEditForm(id) {
-      const bikes = getStoredBikes();
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hathgaon Motors | Certified Pre-Owned Bikes</title>
-  
-  <!-- Google Fonts & FontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -2645,7 +27,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background-color: var(--bg); color: var(--dark); }
 
-    /* Button Utilities */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       padding: 0.65rem 1.1rem; border-radius: 9px; font-weight: 600; font-size: 0.88rem;
@@ -2668,7 +49,6 @@
     .btn-success:hover { background: #bbf7d0; }
     .btn-disabled { background: #cbd5e1 !important; color: #64748b !important; cursor: not-allowed !important; pointer-events: none; }
 
-    /* Public Store Styles */
     #publicStoreView { display: block; padding-bottom: 60px; }
     .navbar {
       background: #ffffff; border-bottom: 1px solid var(--border);
@@ -2746,7 +126,6 @@
     .price-value { font-size: 1.35rem; font-weight: 800; color: var(--dark); }
     .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-    /* Detail Page */
     #detailSection { display: none; animation: fadeIn 0.25s ease-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .detail-card { background: white; border-radius: 18px; border: 1px solid var(--border); padding: 1.75rem; }
@@ -2761,7 +140,6 @@
     .spec-item .label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
     .spec-item .val { font-size: 1rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 6px; }
 
-    /* Admin Portal Styles */
     #adminPortalView { display: none; min-height: 100vh; background: #f1f5f9; }
     .admin-layout { display: flex; min-height: 100vh; }
     .admin-sidebar { width: 260px; background: var(--sidebar); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
@@ -2782,7 +160,6 @@
     .admin-tab-pane.active { display: block; animation: fadeIn 0.2s ease-out; }
     .admin-card { background: white; border-radius: 14px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); padding: 1.5rem; margin-bottom: 1.5rem; }
 
-    /* Modals & Forms */
     .modal {
       display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 1rem;
@@ -2807,11 +184,9 @@
     .admin-table th, .admin-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
     .admin-table th { background: #f8fafc; color: var(--text-muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 
-    /* Auth Tab Toggle in Modal */
     .auth-tab-switch { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.2rem; }
     .auth-tab-btn { flex: 1; padding: 0.75rem; text-align: center; font-weight: 700; font-size: 0.9rem; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -2px; }
     .auth-tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-
     .seller-tag { background: #e0f2fe; color: #0284c7; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 
     @media (max-width: 768px) {
@@ -2823,17 +198,12 @@
 </head>
 <body>
 
-  <!-- ========================================================
-       WINDOW 1: PUBLIC STOREFRONT (Clean & Customer Facing)
-       ======================================================== -->
   <div id="publicStoreView">
     <header class="navbar">
       <div class="logo" id="secretLogoTrigger">
         <i class="fa-solid fa-motorcycle"></i> Hathgaon <span>Motors</span>
       </div>
-      <div class="nav-actions">
-        <!-- Secret access only, no admin button visible for customers -->
-      </div>
+      <div class="nav-actions"></div>
     </header>
 
     <div id="catalogSection">
@@ -2870,7 +240,6 @@
       </main>
     </div>
 
-    <!-- Detail View Inside Public Store -->
     <div id="detailSection" class="container" style="margin-top: 2rem;">
       <div style="margin-bottom: 1.5rem;">
         <button class="btn btn-admin" onclick="showCatalog()">
@@ -2914,12 +283,8 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       WINDOW 2: DEDICATED FULL-WINDOW ADMIN & SELLER PORTAL
-       ======================================================== -->
   <div id="adminPortalView">
     <div class="admin-layout">
-      <!-- Portal Sidebar -->
       <aside class="admin-sidebar">
         <div class="admin-sidebar-header">
           Hathgaon <span id="sidebarBrandRole">Admin</span>
@@ -2928,7 +293,6 @@
           <li class="admin-nav-item active" onclick="switchAdminTab('stockTab', this)">
             <i class="fa-solid fa-motorcycle"></i> Inventory & Stock
           </li>
-          <!-- Owner Only Menus -->
           <li class="admin-nav-item owner-only-menu" onclick="switchAdminTab('subAdminsTab', this)">
             <i class="fa-solid fa-users-gear"></i> Sub-Admins
           </li>
@@ -2947,7 +311,6 @@
         </div>
       </aside>
 
-      <!-- Main Body -->
       <main class="admin-content">
         <div class="admin-topbar">
           <div>
@@ -2962,8 +325,6 @@
         </div>
 
         <div class="admin-main-body">
-
-          <!-- TAB 1: INVENTORY & STOCK (Shared by Owner & Seller) -->
           <div id="stockTab" class="admin-tab-pane active">
             <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
               <div>
@@ -2980,7 +341,6 @@
             </div>
           </div>
 
-          <!-- TAB 2: SUB-ADMINS (Owner Only) -->
           <div id="subAdminsTab" class="admin-tab-pane">
             <div class="admin-card">
               <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Add Sub-Admin</h3>
@@ -3019,11 +379,10 @@
             </div>
           </div>
 
-          <!-- TAB 3: SELLERS & REFERRALS (Owner Only View & Code Generator) -->
           <div id="sellersTab" class="admin-tab-pane">
             <div class="admin-card">
               <h3 style="font-size:1.1rem; font-weight:700;">Generate Seller Referral Code</h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Generate and share this referral code with new sellers to let them register themselves.</p>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Generate and share this referral code with new sellers.</p>
               <div style="display:flex; gap:10px; align-items:center;">
                 <input type="text" id="generatedRefCode" readonly style="max-width:250px; font-weight:800; font-size:1.1rem; color:var(--primary); background:#fff1f2; border:1px dashed var(--primary); padding:0.6rem 1rem; border-radius:8px;">
                 <button class="btn btn-primary" onclick="generateNewReferral()"><i class="fa-solid fa-arrows-rotate"></i> Generate Code</button>
@@ -3048,7 +407,6 @@
             </div>
           </div>
 
-          <!-- TAB 4: PASSWORD RESET (Owner Only) -->
           <div id="securityTab" class="admin-tab-pane">
             <div class="admin-card" style="max-width:500px;">
               <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Reset Super Admin Password</h3>
@@ -3065,15 +423,11 @@
               </form>
             </div>
           </div>
-
         </div>
       </main>
     </div>
   </div>
 
-  <!-- ========================================================
-       MODAL: SECRET LOGIN & SELLER REGISTRATION PORTAL
-       ======================================================== -->
   <div class="modal" id="loginModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -3086,7 +440,6 @@
         <div class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">Seller Registration</div>
       </div>
 
-      <!-- 1. Sign In Form -->
       <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
         <div class="form-group">
           <label>Username / Registered Mobile</label>
@@ -3099,10 +452,9 @@
         <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login to Portal</button>
       </form>
 
-      <!-- 2. Seller Self-Registration Form -->
       <form id="sellerSelfRegisterForm" onsubmit="handleSellerSelfRegister(event)" style="display:none;">
         <div class="form-group">
-          <label style="color:var(--primary);"><i class="fa-solid fa-ticket"></i> Referral Code (Provided by Hathgaon Motors)</label>
+          <label style="color:var(--primary);"><i class="fa-solid fa-ticket"></i> Referral Code</label>
           <div style="display:flex; gap:6px;">
             <input type="text" id="regRefCode" placeholder="Enter Code (e.g. HM-49021)" required>
             <button type="button" class="btn btn-admin btn-sm" onclick="verifyReferralCodeInput()">Verify</button>
@@ -3152,7 +504,6 @@
     </div>
   </div>
 
-  <!-- Upload/Edit Bike Modal -->
   <div class="modal" id="bikeFormModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -3265,11 +616,9 @@
     </div>
   </div>
 
-  <!-- JavaScript -->
   <script>
     const DEALER_PHONE = "8756425896";
 
-    // Data Storage Helpers
     function getAdminCredentials() {
       const stored = localStorage.getItem("hm_super_auth");
       return stored ? JSON.parse(stored) : { user: "Hb123456789", pass: "Hb123456789" };
@@ -3292,9 +641,8 @@
 
     let uploadedBase64Images = [];
     let registeredSellerPhoto = "";
-    let activeLoggedInUser = null; // { name, role: 'Owner' | 'SubAdmin' | 'Seller', refCode }
+    let activeLoggedInUser = null;
 
-    // Initial Demo Stock
     const defaultDemoStock = [
       {
         id: 101,
@@ -3328,9 +676,6 @@
       localStorage.setItem("hathgaon_bikes_full_v9", JSON.stringify(bikes));
     }
 
-    /* ========================================================
-       AUTH TAB SWITCHING (Login vs Seller Register)
-       ======================================================== */
     function switchAuthTab(type) {
       const loginForm = document.getElementById("adminLoginForm");
       const regForm = document.getElementById("sellerSelfRegisterForm");
@@ -3352,9 +697,6 @@
       }
     }
 
-    /* ========================================================
-       SECRET PORTAL TRIGGER
-       ======================================================== */
     let logoClickCount = 0;
     let logoClickTimer = null;
 
@@ -3387,7 +729,6 @@
       }
     });
 
-    // Verification of Referral Code by Seller
     function verifyReferralCodeInput() {
       const code = document.getElementById("regRefCode").value.trim().toUpperCase();
       const pool = getActiveReferralCodes();
@@ -3413,7 +754,6 @@
       }
     });
 
-    // Seller Self-Registration Submission
     function handleSellerSelfRegister(e) {
       e.preventDefault();
       if (!verifyReferralCodeInput()) {
@@ -3424,7 +764,6 @@
       const sellers = getSellers();
       const phone = document.getElementById("regSellerPhone").value.trim();
 
-      // Check if phone already registered
       if (sellers.some(s => s.phone === phone)) {
         alert("This mobile number is already registered! Please sign in directly.");
         return;
@@ -3450,7 +789,6 @@
       switchAuthTab('login');
     }
 
-    // Unified Sign In Handler (Owner, Sub-Admin, or Seller)
     function handleAdminLogin(e) {
       e.preventDefault();
       const user = document.getElementById("adminUser").value.trim();
@@ -3459,7 +797,6 @@
       const subAdmins = getSubAdmins();
       const sellers = getSellers();
 
-      // 1. Super Admin / Owner Login
       if (user === superAuth.user && pass === superAuth.pass) {
         activeLoggedInUser = { name: "Owner (Super Admin)", role: "Owner" };
         closeModal("loginModal");
@@ -3468,7 +805,6 @@
         return;
       }
 
-      // 2. Sub-Admin Login
       const matchedSub = subAdmins.find(sa => sa.user === user && sa.pass === pass);
       if (matchedSub) {
         activeLoggedInUser = { name: matchedSub.name, role: "SubAdmin" };
@@ -3478,7 +814,6 @@
         return;
       }
 
-      // 3. Registered Seller Login
       const matchedSeller = sellers.find(s => s.phone === user && s.pass === pass);
       if (matchedSeller) {
         activeLoggedInUser = { 
@@ -3502,9 +837,6 @@
       alert("Logged out successfully.");
     }
 
-    /* ========================================================
-       WINDOW & ROLE-BASED DASHBOARD CONTROLS
-       ======================================================== */
     function switchToAdminPortal() {
       document.getElementById("publicStoreView").style.display = "none";
       document.getElementById("adminPortalView").style.display = "block";
@@ -3512,16 +844,13 @@
       const isOwner = activeLoggedInUser.role === "Owner";
       const isSeller = activeLoggedInUser.role === "Seller";
 
-      // Configure Navbar & Sidebar for User Role
       document.getElementById("sidebarBrandRole").innerText = isSeller ? "Seller Hub" : "Admin";
       document.getElementById("currentUserMeta").innerText = `Logged in as: ${activeLoggedInUser.name} (${activeLoggedInUser.role})`;
 
-      // Hide owner-only menus from Seller
       document.querySelectorAll(".owner-only-menu").forEach(menu => {
         menu.style.display = isOwner ? "flex" : "none";
       });
 
-      // Default to Stock Tab
       switchAdminTab('stockTab', document.querySelector('.admin-nav-item'));
 
       renderAdminDashboard();
@@ -3553,9 +882,6 @@
       document.getElementById("adminHeaderTitle").innerText = titleMap[tabId];
     }
 
-    /* ========================================================
-       TAB 1: INVENTORY MANAGEMENT WITH SELLER TRACKING
-       ======================================================== */
     function renderAdminDashboard() {
       const bikes = getStoredBikes();
       const list = document.getElementById("adminInventoryList");
@@ -3564,7 +890,6 @@
       const isSeller = activeLoggedInUser && activeLoggedInUser.role === "Seller";
       const isOwner = activeLoggedInUser && activeLoggedInUser.role === "Owner";
 
-      // Filter bikes if logged in as a Seller (Seller sees only their own bikes)
       const displayBikes = isSeller 
         ? bikes.filter(b => b.addedByRef === activeLoggedInUser.refCode || b.addedByPhone === activeLoggedInUser.phone)
         : bikes;
@@ -3715,7 +1040,6 @@
       const droppedVal = document.getElementById("bikeDroppedPrice").value.trim();
 
       if (editId) {
-        // Edit Existing Bike
         const index = currentBikes.findIndex(b => b.id == editId);
         if (index !== -1) {
           currentBikes[index] = {
@@ -3736,7 +1060,6 @@
           };
         }
       } else {
-        // Add New Bike with Seller Tagging
         const isSeller = activeLoggedInUser && activeLoggedInUser.role === "Seller";
 
         const newBike = {
@@ -3774,9 +1097,6 @@
       alert("Bike details saved!");
     }
 
-    /* ========================================================
-       TAB 2: SUB-ADMINS (Owner Only)
-       ======================================================== */
     function renderSubAdmins() {
       const list = getSubAdmins();
       const tbody = document.getElementById("subAdminTableBody");
@@ -3822,9 +1142,6 @@
       }
     }
 
-    /* ========================================================
-       TAB 3: REFERRAL GENERATOR & SELLERS DIRECTORY (Owner Only)
-       ======================================================== */
     function generateNewReferral() {
       const pool = getActiveReferralCodes();
       const randomCode = "HM-" + Math.floor(10000 + Math.random() * 90000);
@@ -3871,9 +1188,6 @@
       }
     }
 
-    /* ========================================================
-       TAB 4: PASSWORD RESET (Owner Only)
-       ======================================================== */
     function handleResetPassword(e) {
       e.preventDefault();
       const currentAuth = getAdminCredentials();
@@ -3891,9 +1205,6 @@
       alert("Super Admin password updated successfully!");
     }
 
-    /* ========================================================
-       FRONTEND PUBLIC STORE RENDERING
-       ======================================================== */
     function renderBikes() {
       const bikes = getStoredBikes();
       const grid = document.getElementById("bikeGrid");
@@ -4064,7 +1375,6 @@
     function openModal(id) { document.getElementById(id).style.display = "flex"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
 
-    // Live Search
     const searchInput = document.getElementById("searchInput");
     const brandFilter = document.getElementById("brandFilter");
 
@@ -4085,7 +1395,6 @@
     searchInput.addEventListener("input", filterBikes);
     brandFilter.addEventListener("change", filterBikes);
 
-    // Initial Load
     renderBikes();
   </script>
 </body>
